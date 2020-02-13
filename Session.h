@@ -1,7 +1,7 @@
 #ifndef UNIVERSITY_MAIN_SESSION_H
 #define UNIVERSITY_MAIN_SESSION_H
 
-#include "Subject.h"
+#include "subject/Subject.h"
 #include <vector>
 #include <string>
 
