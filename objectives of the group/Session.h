@@ -1,11 +1,10 @@
 #ifndef UNIVERSITY_MAIN_SESSION_H
 #define UNIVERSITY_MAIN_SESSION_H
 
-#include "subject/Subject.h"
+#include "../subject/Subject.h"
 #include <vector>
 #include <string>
 
-template <typename T>
 class Session {
 private:
     int size_session;

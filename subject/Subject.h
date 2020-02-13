@@ -8,7 +8,6 @@ class Subject {
 private:
     static std::string name_subject;
     std::string type_subject = "NULL";
-    int *mark<name_subject>;
 public:
     Subject(std::string); //попробывать заполнить type_subject
     ~Subject();
@@ -16,6 +15,8 @@ public:
     void set_mark(int);
     void set_mark(bool);
     void print_mark();
+private:
+    int *mark<name_subject>;
 };
 
 
