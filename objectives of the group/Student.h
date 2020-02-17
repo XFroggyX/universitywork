@@ -8,10 +8,13 @@
 class Student {
 private:
     std::string name_student;
-    Session *sessio;
-
+    Session student_session;
+    bool allows;
 public:
-
+    void print_session();
+    bool allow();
+    unsigned average_score();
+    unsigned items_session();
 };
 
 

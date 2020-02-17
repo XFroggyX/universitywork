@@ -9,12 +9,13 @@
 class Group {
 private:
     std::vector<Student> list_students;
-    Plan *plan;
+    Plan plan;
     std::string group_name;
     unsigned size_group;
     std::vector<Student> list_allows_students;
 public:
-    void add_student();
+    Group();
+    void add_student(std::string);
     void delete_student();
     void print_group();
     void allow_student();

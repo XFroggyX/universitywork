@@ -7,11 +7,13 @@
 
 class Session {
 private:
-    int size_session;
-    std::vector<Subject> subjects_list;
+    unsigned items_session = 0;
+    std::vector<Subject> subjects;
 public:
     Session();
-    int size_sessio();
+    unsigned items_sessio();
+    void print_session();
+    unsigned average_score();
 };
 
 

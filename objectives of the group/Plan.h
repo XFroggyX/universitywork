@@ -8,11 +8,13 @@
 class Plan {
 private:
     std::vector<Subject> list_subject;
-    int size = 0;
+    unsigned items_plan = 0;
 public:
-    void add_subject(std::string, int, bool);
+    void add_subject(std::string, int);
+    void add_subject(std::string, bool);
     void delete_subject();
     void print_plan();
+    unsigned size_plan();
 };
 
 

@@ -11,9 +11,9 @@ public:
     Mark(T);
     ~Mark();
 
-    void set_mark(T);
-    T get_mark();
+    void change_mark();
     void print_mark();
+    T get_mark();
 };
 
 
