@@ -9,8 +9,6 @@ private:
     std::string name_subject;
     std::string type_subject;
     unsigned hour_subject = 0;
-    Mark<int> int_mark;
-    Mark<bool> bool_mark;
     int *mark;
 public:
     Subject(std::string, int);

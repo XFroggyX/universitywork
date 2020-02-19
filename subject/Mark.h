@@ -2,19 +2,42 @@
 #define UNIVERSITY_MAIN_MARK_H
 
 #include <string>
+#include <iostream>
+#include <limits>
+#include <algorithm>
+#include <functional>
 
-template <typename T>
 class Mark {
 private:
-    T mark;
+    int mark;
 public:
-    Mark(T);
-    ~Mark();
-
-    void change_mark();
-    void print_mark();
-    T get_mark();
+    virtual void change_mark(int);
+    virtual void print_mark();
+    virtual int return_mark();
 };
 
+class Int_mark : public Mark {
+private:
+    int mark;
+public:
+    Int_mark(int);
+    ~Int_mark();
+
+    void change_mark(int);
+    void print_mark() const;
+    int return_mark() const;
+};
+
+class Bool_mark : public Mark {
+private:
+    int mark;
+public:
+    Bool_mark(bool);
+    ~Bool_mark();
+
+    void change_mark(bool);
+    void print_mark() const;
+    int return_mark() const;
+};
 
 #endif //UNIVERSITY_MAIN_MARK_H
