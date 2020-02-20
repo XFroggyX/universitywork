@@ -1,10 +1,11 @@
 #include <iostream>
+#include <algorithm>
 
-#include "subject/Mark.h"
+#include "subject/Subject.h"
 
 using namespace std;
 
 int main() {
-    Bool_mark q(true);
-    q.print_mark();
+    Subject q;
+    q.add_hour(12);
 }

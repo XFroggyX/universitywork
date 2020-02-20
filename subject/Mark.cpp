@@ -37,15 +37,17 @@ int Mark::return_mark() {
 Int_mark::Int_mark() {
     std::string str_mark;
     std::cout << "Введите новую оценку: ";
-    std::cin >> str_mark;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::cin.ignore();
+    std::getline(std::cin, str_mark);
 
     str_mark = ltrim(rtrim(str_mark));
     int new_mark;
     try {
         new_mark = stoi(str_mark);
     } catch(...) {
-        std::cout <<"Изменение неудалось. Вы ввели не число";
+        std::cout <<"Изменение неудалось. Вы ввели не число. Установлено значение по умолчанию.";
+        mark = 1;
+        return ;
     }
 
     try {

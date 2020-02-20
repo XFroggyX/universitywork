@@ -3,21 +3,20 @@
 
 #include "Mark.h"
 #include <string>
+#include <vector>
 
 class Subject {
 private:
     std::string name_subject;
     std::string type_subject;
     unsigned hour_subject = 0;
-    int *mark;
+    Mark mark;
 public:
+    Subject();
     Subject(std::string, int);
     Subject(std::string, bool);
-    Subject(std::string, std::string);
     ~Subject();
 
-    void set_mark(unsigned);
-    void set_mark(bool);
     void change_mark(unsigned);
     void change_mark(bool);
     void rename_subj(std::string);
