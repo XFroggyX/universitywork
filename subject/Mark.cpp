@@ -34,6 +34,31 @@ int Mark::return_mark() {
     return mark;
 }
 
+Int_mark::Int_mark() {
+    std::string str_mark;
+    std::cout << "Введите новую оценку: ";
+    std::cin >> str_mark;
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+    str_mark = ltrim(rtrim(str_mark));
+    int new_mark;
+    try {
+        new_mark = stoi(str_mark);
+    } catch(...) {
+        std::cout <<"Изменение неудалось. Вы ввели не число";
+    }
+
+    try {
+        if((new_mark < 1) || (new_mark > 5))
+            throw 1;
+        else
+            mark = new_mark;
+    } catch(int a) {
+        std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было установлино по умолчанию." << std::endl;
+        mark = 1;
+    }
+}
+
 Int_mark::Int_mark(int new_mark) {
     try {
         if((new_mark < 1) || (new_mark > 5))
@@ -81,30 +106,27 @@ int Int_mark::return_mark() const {
 
 Int_mark::~Int_mark() = default;
 
+Bool_mark::Bool_mark() {
+    std::string str_mark;
+    std::cout << "Выберите оценку: " << std::endl << "1. Зачёт" << std::endl;
+    std::cout << "2. Не зачёт" << std::endl << "Ввод: ";
+    std::cin >> str_mark;
 
+    str_mark = ltrim(rtrim(str_mark));
+    int int_mark = stoi(str_mark);
+
+    if(int_mark == 1) {
+        mark = 1;
+    } else if(int_mark == 2) {
+        mark = 0;
+    } else {
+        std::cout << "Вы выбрали неверное значение." << std::endl;
+        return ;
+    }
+}
 
 Bool_mark::Bool_mark(bool new_mark) {
-    if(!new_mark) {
-        std::string str_mark;
-        std::cout << "Выберите оценку: " << std::endl << "1. Зачёт" << std::endl;
-        std::cout << "2. Не зачёт" << std::endl << "Ввод: ";
-        std::cin >> str_mark;
-
-        str_mark = ltrim(rtrim(str_mark));
-        int int_mark = stoi(str_mark);
-
-        if(int_mark == 1) {
-            mark = 1;
-        } else if(int_mark == 2) {
-            mark = 0;
-        } else {
-            std::cout << "Вы выбрали неверное значение." << std::endl;
-            return ;
-        }
-    } else {
         mark = new_mark;
-    }
-
 }
 
 void Bool_mark::change_mark(bool new_mark) {

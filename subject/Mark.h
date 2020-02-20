@@ -20,6 +20,7 @@ class Int_mark : public Mark {
 private:
     int mark;
 public:
+    Int_mark();
     Int_mark(int);
     ~Int_mark();
 
@@ -32,6 +33,7 @@ class Bool_mark : public Mark {
 private:
     int mark;
 public:
+    Bool_mark();
     Bool_mark(bool);
     ~Bool_mark();
 
