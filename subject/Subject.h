@@ -21,8 +21,9 @@ public:
     void print_subject_mark() const;
     void change_mark(unsigned);
     void change_mark(bool);
-    void rename_subj(std::string);
+    void rename_subj(const std::string& = " ");
     void add_hour(unsigned);
+    void print_hour();
 };
 
 

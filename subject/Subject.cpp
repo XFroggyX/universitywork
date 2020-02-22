@@ -1,7 +1,5 @@
 #include "Subject.h"
 
-#include <utility>
-
 std::string split_string(std::string input_string) {
     std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
         return x == y and x == ' ';
@@ -102,14 +100,14 @@ void Subject::add_hour(unsigned hours = -1) {
     }
 }
 
-void Subject::rename_subj(std::string new_name = " ") {
+void Subject::rename_subj(const std::string& new_name) {
     if(new_name  == " ") {
         std::cout << "Переименовать предмет ?" << std::endl;
         std::cout << "Ввод: ";
-        std::string new_name;
-        getline(std::cin.ignore(), new_name);
-        new_name = split_string(new_name);
-        name_subject = new_name;
+        std::string str;
+        getline(std::cin.ignore(), str);
+        str = split_string(str);
+        name_subject = str;
     } else {
         name_subject = new_name;
     }
@@ -131,4 +129,27 @@ void Subject::print_subject_mark() const {
     }
 }
 
-Subject::~Subject() = default;
+void Subject::change_mark(unsigned new_mark = 0) {
+    if(new_mark == 0) {
+        std::cout << "Введите новую оценку..." << std::endl;
+        mark = new Int_mark();
+    } else if((new_mark < 1) || (new_mark > 5)) {
+        std::cout << "Вы вышли из разрешонного диапазона." << std::endl;
+    } else {
+        mark = new Int_mark(int(new_mark));
+    }
+}
+
+void Subject::change_mark(bool new_mark) {
+    if(new_mark) {
+        mark = new Bool_mark(new_mark);
+    }
+}
+
+Subject::~Subject() {
+    delete mark;
+}
+
+void Subject::print_hour() {
+    std::cout << "Часы за предмет: " << hour_subject << std::endl;
+}
