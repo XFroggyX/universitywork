@@ -34,6 +34,8 @@ int Mark::return_mark() {
     return mark;
 }
 
+Mark::~Mark() = default;
+
 Int_mark::Int_mark() {
     std::string str_mark;
     std::cout << "Введите новую оценку: ";
@@ -73,7 +75,7 @@ Int_mark::Int_mark(int new_mark) {
     }
 }
 
-void Int_mark::change_mark(int new_mark = 0) {
+void Int_mark::change_mark(int new_mark) {
     if(new_mark == 0 ) {
         std::string str_mark;
         std::cout << "Введите новую оценку: ";

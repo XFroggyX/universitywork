@@ -14,6 +14,7 @@ public:
     virtual void change_mark(int);
     virtual void print_mark();
     virtual int return_mark();
+    virtual ~Mark();
 };
 
 class Int_mark : public Mark {
@@ -24,7 +25,7 @@ public:
     Int_mark(int);
     ~Int_mark();
 
-    void change_mark(int);
+    void change_mark(int = 0);
     void print_mark() const;
     int return_mark() const;
 };
