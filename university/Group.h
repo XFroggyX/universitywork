@@ -9,14 +9,17 @@
 class Group {
 private:
     std::vector<Student> list_students;
-    Plan plan;
-    std::string group_name;
-    unsigned size_group;
     std::vector<Student> list_allows_students;
+    std::string group_name;
+    unsigned size_group{};
 public:
     Group();
-    void add_student(std::string);
-    void delete_student();
+    Group(std::string);
+    void add_student(const Student&);
+    Student& get_student(int);
+    std::string get_id() const;
+    std::vector<Student> get_students() const;
+    void delete_student(int);
     void print_group();
     void allow_student();
 };
