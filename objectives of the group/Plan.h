@@ -11,8 +11,6 @@ public:
     unsigned items_plan = 0;
 public:
     void add_subject(Subject);
-    void add_subject(Subject, std::string, int);
-    void add_subject(Subject, std::string, bool);
     void delete_subject();
     void print_plan();
     unsigned size_plan();

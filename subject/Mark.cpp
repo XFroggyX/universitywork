@@ -38,7 +38,7 @@ Mark::~Mark() = default;
 
 Int_mark::Int_mark() {
     std::string str_mark;
-    std::cout << "Введите новую оценку: ";
+    std::cout << "Введите оценку: ";
     std::cin.ignore();
     std::getline(std::cin, str_mark);
 

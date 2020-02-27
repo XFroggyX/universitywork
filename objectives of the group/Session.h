@@ -8,7 +8,7 @@
 class Session {
 private:
     unsigned items_session = 0;
-    std::vector<Subject> subjects;
+    std::vector<Task> subjects;
 public:
     Session();
     unsigned items_sessio();

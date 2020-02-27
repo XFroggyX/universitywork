@@ -2,11 +2,13 @@
 #define UNIVERSITY_MAIN_SUBJECT_H
 
 #include "Mark.h"
+#include "Tasks_cereator.h"
 #include <string>
 #include <vector>
 
 class Subject {
 private:
+    std::vector<Tasks_cereator> tasks;
     std::string name_subject;
     std::string type_subject;
     unsigned hour_subject = 0;
