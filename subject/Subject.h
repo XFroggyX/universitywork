@@ -8,7 +8,7 @@
 
 class Subject {
 private:
-    std::vector<Tasks_cereator> tasks;
+    std::vector<Task *> tasks;
     std::string name_subject;
     std::string type_subject;
     unsigned hour_subject = 0;
@@ -26,6 +26,7 @@ public:
     void rename_subj(const std::string& = " ");
     void add_hour(unsigned);
     void print_hour();
+    void add_task();
 };
 
 
