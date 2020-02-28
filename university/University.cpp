@@ -2,7 +2,7 @@
 
 #include <utility>
 
-std::string split_string(std::string input_string) {
+std::string unistr(std::string input_string) {
     std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
         return x == y and x == ' ';
     });
@@ -19,7 +19,7 @@ University::University() {
     std::string new_name_university;
     std::cout << "Введите название университета: " << std::endl;
     getline(std::cin, new_name_university);
-    new_name_university = split_string(new_name_university);
+    new_name_university = unistr(new_name_university);
     name_university = new_name_university;
 }
 
@@ -46,10 +46,11 @@ Group &University::get_group(int i)  {
 void University::delete_group(int i) {
     list_groups.erase(list_groups.begin() + i);
 }
-
+/*
 void University::print_group() const {
     std::cout << "Список групп: " << std::endl;
     for(int i = 0; i < list_groups.size(); i++) {
-        std::cout << i + 1 << ". " << list_groups[i].get_name_group() << std::endl;
+        std::cout << i + 1 << ". " << list_groups.print_group() << std::endl;
     }
 }
+*/

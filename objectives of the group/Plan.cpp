@@ -1,6 +1,6 @@
 #include "Plan.h"
 
-std::string split_string(std::string input_string) {
+std::string planstr(std::string input_string) {
     std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [](const char &x, const char &y) {
         return x == y and x == ' ';
     });
@@ -17,6 +17,7 @@ void Plan::add_subject(Subject subject) {
     list_subject.push_back(subject);
 }
 
+/*
 void Plan::print_plan() {
     std::cout << "Предметы в плане:" << std::endl;
     for(int i = 0; i < plan_sub.size(); i++) {
@@ -32,3 +33,4 @@ void Plan::delete_subject() {
     std::cin >> index;
     plan_sub.erase(plan_sub.begin() + index);
 }
+*/

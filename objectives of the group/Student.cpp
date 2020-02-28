@@ -2,7 +2,7 @@
 
 #include <utility>
 
-std::string split_string(std::string input_string) {
+std::string studstr(std::string input_string) {
     std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
         return x == y and x == ' ';
     });
@@ -19,7 +19,7 @@ Student::Student() {
     std::cout << "Введите ФИО студента:";
     std::string new_name_student;
     getline(std::cin, new_name_student);
-    new_name_student = split_string(new_name_student);
+    new_name_student = studstr(new_name_student);
     name_student = new_name_student;
 }
 

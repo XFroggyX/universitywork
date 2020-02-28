@@ -8,7 +8,7 @@
 class Student {
 private:
     std::string name_student;
-    Session student_session;
+    //Session student_session;
     bool allows = false;
 public:
     Student();

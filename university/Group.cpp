@@ -2,7 +2,7 @@
 
 #include <utility>
 
-std::string split_string(std::string input_string) {
+std::string groupstr(std::string input_string) {
     std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
         return x == y and x == ' ';
     });
@@ -19,7 +19,7 @@ std::string split_string(std::string input_string) {
 Group::Group() {
     std::string new_group_name;
     std::cout << "Введите название группы: ";
-    new_group_name = split_string(new_group_name);
+    new_group_name = groupstr(new_group_name);
     group_name = new_group_name;
     size_group++;
 }
