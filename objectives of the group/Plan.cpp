@@ -1,54 +1,20 @@
 #include "Plan.h"
 
+std::string split_string(std::string input_string) {
+    std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [](const char &x, const char &y) {
+        return x == y and x == ' ';
+    });
+    input_string.erase(new_end, input_string.end());
+    input_string.erase(
+            input_string.begin(),
+            find_if(input_string.begin(), input_string.end(), not1(std::ptr_fun<int, int>(isspace)))
+    );
+
+    return input_string;
+}
 
 void Plan::add_subject(Subject subject) {
     list_subject.push_back(subject);
-}
-
-void Plan::add_subject() {
-    int type = 0;
-    string name = "works";
-
-    switch(type) {
-        case 0: {
-            Concrete_Lab_work* Lab_work = new Concrete_Lab_work();
-            plan_sub.push_back(Lab_work->create_subject());
-            plan_sub[0]->set_name_work(name);
-            cout << plan_sub[0]->get_name_work();
-            plan_sub.push_back(Lab_work->create_subject());
-            plan_sub[0]->set_name_work("name");
-            cout << plan_sub[0]->get_name_work();
-            break;
-        }
-        case 1: {
-            Creator* Rgz = new Concrete_Rgz();
-            Rgz->set(name);
-            plan_sub.push_back(Rgz->create_subject());
-            break;
-        }
-        case 2: {
-            Creator* Coursework = new Concrete_Coursework();
-            plan_sub.push_back(Coursework->create_subject());
-            Coursework->set(name);
-            break;
-        }
-        case 3: {
-            Creator* Test = new Concrete_Test();
-            plan_sub.push_back(Test->create_subject());
-            Test->set(name);
-            break;
-        }
-        case 4: {
-            Creator* Exam = new Concrete_Exam();
-            plan_sub.push_back(Exam->create_subject());
-            Exam->set(name);
-            break;
-        }
-        default: {
-            std::cout << "Ошибка" << std::endl;
-            break;
-        }
-    }
 }
 
 void Plan::print_plan() {

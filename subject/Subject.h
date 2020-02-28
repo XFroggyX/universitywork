@@ -26,6 +26,7 @@ public:
     void rename_subj(const std::string& = " ");
     void add_hour(unsigned);
     void print_hour();
+
     void add_task();
 };
 

@@ -1,7 +1,7 @@
 #include "Subject.h"
 
 std::string split_string(std::string input_string) {
-    std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [] (const char &x, const char &y) {
+    std::string::iterator new_end = unique(input_string.begin(), input_string.end(), [](const char &x, const char &y) {
         return x == y and x == ' ';
     });
     input_string.erase(new_end, input_string.end());
@@ -12,6 +12,7 @@ std::string split_string(std::string input_string) {
 
     return input_string;
 }
+
 
 Subject::Subject() {
     std::string name_sub;
@@ -154,50 +155,70 @@ void Subject::print_hour() {
     std::cout << "Часы за предмет: " << hour_subject << std::endl;
 }
 
-/*
-void Subject::add_task() {
-    int type = 0;
-    string name = "works";
 
-    switch(type) {
+void Subject::add_task() {
+    int type = -1;
+    std::string name;
+
+    std::cout << "Виды работ:" << std::endl;
+    std::cout << "1. Лабораторная\n2. РГЗ\n 3. Курсовая работа\n 4. Тест\n 5." << std::endl;
+    std::cout << "Выберите тип задания:";
+
+    try {
+        std::cin >> type;
+    }catch (int a){
+        std::cout << "Вы ввели не число. Передмет не добавлен." << std::endl;
+        return;
+    }
+
+    std::cout << "Название работы: ";
+    getline(std::cin, name);
+    name = split_string(name);
+
+    switch(type - 1) {
         case 0: {
             Concrete_Lab_work* Lab_work = new Concrete_Lab_work();
-            plan_sub.push_back(Lab_work->create_subject());
-            plan_sub[0]->set_name_work(name);
-            cout << plan_sub[0]->get_name_work();
-            plan_sub.push_back(Lab_work->create_subject());
-            plan_sub[0]->set_name_work("name");
-            cout << plan_sub[0]->get_name_work();
+            tasks.push_back(Lab_work->create_subject());
+            tasks[tasks.size()]->set_name_work(name);
+            Mark *new_mark = new Int_mark();
+            tasks[tasks.size()]->set_mark(new_mark);
             break;
         }
         case 1: {
             Tasks_cereator* Rgz = new Concrete_Rgz();
-            Rgz->set(name);
-            plan_sub.push_back(Rgz->create_subject());
+            tasks.push_back(Rgz->create_subject());
+            tasks[tasks.size()]->set_name_work(name);
+            Mark *new_mark = new Int_mark();
+            tasks[tasks.size()]->set_mark(new_mark);
             break;
         }
         case 2: {
             Tasks_cereator* Coursework = new Concrete_Coursework();
-            plan_sub.push_back(Coursework->create_subject());
-            Coursework->set(name);
+            tasks.push_back(Coursework->create_subject());
+            tasks[tasks.size()]->set_name_work(name);
+            Mark *new_mark = new Int_mark();
+            tasks[tasks.size()]->set_mark(new_mark);
             break;
         }
         case 3: {
             Tasks_cereator* Test = new Concrete_Test();
-            plan_sub.push_back(Test->create_subject());
-            Test->set(name);
+            tasks.push_back(Test->create_subject());
+            tasks[tasks.size()]->set_name_work(name);
+            Mark *new_mark = new Int_mark();
+            tasks[tasks.size()]->set_mark(new_mark);
             break;
         }
         case 4: {
             Tasks_cereator* Exam = new Concrete_Exam();
-            plan_sub.push_back(Exam->create_subject());
-            Exam->set(name);
+            tasks.push_back(Exam->create_subject());
+            tasks[tasks.size()]->set_name_work(name);
+            Mark *new_mark = new Int_mark();
+            tasks[tasks.size()]->set_mark(new_mark);
             break;
         }
         default: {
-            std::cout << "Ошибка" << std::endl;
+            std::cout << "Такой вариант отсутствует." << std::endl;
             break;
         }
     }
 }
-*/
