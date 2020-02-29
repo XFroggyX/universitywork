@@ -14,10 +14,10 @@ public:
     University();
     University(std::string);
     std::string get_name_university() const;
-    void add_group(const Group&);
+    void add_group(Group);
     Group& get_group(int);
     std::vector<Group> get_group() const;
-    void delete_group(int);
+    void delete_group();
     void print_name_university();
     void print_group() const;
 };

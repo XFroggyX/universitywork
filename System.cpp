@@ -28,7 +28,7 @@ void System::print_university() {
 
 void System::delete_university() {
     print_university();
-    std::cout << "____________________________" << std::endl;
+    std::cout << std::endl << "____________________________" << std::endl;
     std::cout << "Введите номер ВУЗа:";
     int index = 0;
     try {
@@ -46,24 +46,53 @@ void System::delete_university() {
     std::cout << "-- ВУЗ успешно удалён --" << std::endl;
 }
 
-void System::work_with_groups() {
+void System::work_with_groups(int u_index) {
+    while(true) {
+        int select;
         int q = 0;
-        while(true) {
-            std::cout << "____________________________" << std::endl;
-            std::cout << "Меню:" << std::endl;
-            std::cout << "1 - добавить группу" << std::endl;
-            std::cout << "2 - удалить группу" << std::endl;
-            std::cout << "3 - список групп в институте" << std::endl;
-            std::cout << "0 - назад" << std::endl;
-            std::cin >> option;
-            switch(option - 1) {
-                case 0: {system.addGroup(); break;}
-                    // case 1: {system.delGroup(); break;}
-                case 3: { q += 1; break;}
-            }
-            if(q != 0)
-                break;
+        int option = 0;
+        std::cout << "____________________________" << std::endl;
+        std::cout << "Меню:" << std::endl;
+        std::cout << "1 - добавить группу" << std::endl;
+        std::cout << "2 - удалить группу" << std::endl;
+        std::cout << "3 - список групп в институте" << std::endl;
+        std::cout << "4 - работа с группами" << std::endl;
+        std::cout << "0 - назад" << std::endl;
+        std::cout << "Ввод: ";
+        try {
+            std::cin >> select;
+
+            if((select > 3) || (select < 0))
+                throw 1;
+
+        } catch (int a){
+            std::cout << "Данный пункт меню отсутствует" << std::endl;
+            return;
         }
+
+        switch (select) {
+            case 1: {
+                Group gp;
+                list_university[u_index].add_group(gp);
+                std::cout << "-- группа успешно добавлена --" << std::endl;
+                break;
+            }
+            case 2: {
+                list_university[u_index].delete_group();
+                break;
+            }
+            case 3: {
+                list_university[u_index].print_group();
+                break;
+            }
+            case 0: {
+                q += 1;
+                break;
+            }
+        }
+        if (q != 0)
+            break;
+    }
 }
 
 

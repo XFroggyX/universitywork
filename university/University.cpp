@@ -27,9 +27,8 @@ University::University() {
 University::University(std::string name_university_) : name_university(std::move(name_university_)) {
 }
 
-void University::add_group(const Group& new_group) {
+void University::add_group(Group new_group) {
     list_groups.push_back(new_group);
-    size_group++;
 }
 
 std::string University::get_name_university() const {
@@ -44,18 +43,32 @@ Group &University::get_group(int i)  {
     return list_groups[i];
 }
 
-void University::delete_group(int i) {
-    list_groups.erase(list_groups.begin() + i);
+void University::delete_group() {
+    print_group();
+    std::cout << std::endl << "____________________________" << std::endl;
+    std::cout << "Введите номер ВУЗа:";
+    int group_index = 0;
+    try {
+        std::cin >> group_index;
+
+        if((group_index > list_groups.size()) || (group_index < 0))
+            throw 1;
+
+    } catch (int a){
+        std::cout << "Группа с таким номером отсутствует." << std::endl;
+        return;
+    }
+    list_groups.erase(list_groups.begin() + group_index - 1);
+    std::cout << "-- группа успешно удалён --" << std::endl;
 }
 
 void University::print_name_university() {
     std::cout << "Назавание институту: " << name_university << std::endl;
 }
-/*
+
 void University::print_group() const {
     std::cout << "Список групп: " << std::endl;
     for(int i = 0; i < list_groups.size(); i++) {
-        std::cout << i + 1 << ". " << list_groups.print_group() << std::endl;
+        std::cout << i + 1 << ". " << list_groups[i].get_name_group() << std::endl;
     }
 }
-*/

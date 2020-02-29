@@ -17,7 +17,7 @@ public:
     Group(std::string);
     void add_student(const Student&);
     Student& get_student(int);
-    std::string get_id() const;
+    std::string get_name_group() const;
     std::vector<Student> get_students() const;
     void delete_student(int);
     void print_group();

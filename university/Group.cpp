@@ -19,6 +19,7 @@ std::string groupstr(std::string input_string) {
 Group::Group() {
     std::string new_group_name;
     std::cout << "Введите название группы: ";
+    std::cin >> new_group_name;
     new_group_name = groupstr(new_group_name);
     group_name = new_group_name;
     size_group++;
@@ -36,7 +37,7 @@ Student &Group::get_student(int i) {
     return list_students[i];
 }
 
-std::string Group::get_id() const {
+std::string Group::get_name_group() const {
     return group_name;
 }
 

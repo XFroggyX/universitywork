@@ -17,20 +17,17 @@ int main() {
             p_i = 0;
         }
 
-        int q = 0;
-        std::cout << "____________________________" << std::endl;
+        int q = -1;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - добавить ВУЗ" << std::endl;
         std::cout << "2 - удалить ВУЗ" << std::endl;
         std::cout << "3 - список ВУЗов" << std::endl;
         std::cout << "4 - выбрать институт" << std::endl;
-        std::cout << "0 - назад" << std::endl;
+        std::cout << "0 - выход" << std::endl;
         std::cout << "Ввод: ";
-        std::cin >> option;
 
         try {
             std::cin >> option;
-            int a = option;
             if ((option > 4) || (option < 0))
                 throw;
         } catch (int a) {
@@ -52,14 +49,19 @@ int main() {
                 break;
             }
             case 4: {
-                system.work_with_groups();
+                int index;
+                system.print_university();
+                std::cout << "Выберите институт: ";
+                std::cin >> index;
+                system.work_with_groups(index - 1);
+                q--;
             }
             case 0: {
                 q += 1;
                 break;
             }
         }
-        if (q != 0)
+        if (q != -1)
             break;
     }
     return 0;

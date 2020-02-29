@@ -12,7 +12,7 @@ public:
     void add_university();
     void delete_university();
     void print_university();
-    void work_with_groups();
+    void work_with_groups(int index = -1);
     void print_full_information_university();
     void work_with_students();
     void work_with_subjects();
