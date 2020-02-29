@@ -16,14 +16,15 @@ std::string unistr(std::string input_string) {
 }
 
 University::University() {
-    std::string new_name_university;
+    std::string new_name_university_;
     std::cout << "Введите название университета: " << std::endl;
-    getline(std::cin, new_name_university);
-    new_name_university = unistr(new_name_university);
-    name_university = new_name_university;
+    std::cin >> new_name_university_;
+    std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+    new_name_university_ = unistr(new_name_university_);
+    name_university = new_name_university_;
 }
 
-University::University(std::string name_university) : name_university(std::move(name_university)) {
+University::University(std::string name_university_) : name_university(std::move(name_university_)) {
 }
 
 void University::add_group(const Group& new_group) {
@@ -45,6 +46,10 @@ Group &University::get_group(int i)  {
 
 void University::delete_group(int i) {
     list_groups.erase(list_groups.begin() + i);
+}
+
+void University::print_name_university() {
+    std::cout << "Назавание институту: " << name_university << std::endl;
 }
 /*
 void University::print_group() const {

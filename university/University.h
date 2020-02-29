@@ -18,6 +18,7 @@ public:
     Group& get_group(int);
     std::vector<Group> get_group() const;
     void delete_group(int);
+    void print_name_university();
     void print_group() const;
 };
 

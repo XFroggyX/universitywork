@@ -18,3 +18,52 @@ void System::add_university() {
     list_university.push_back(un);
     std::cout << "-- ВУЗ успешно добавлен --" << std::endl;
 }
+
+void System::print_university() {
+    std::cout << "Список ВУЗов: " << std::endl;
+    for(int i = 0; i < list_university.size(); i++) {
+        std::cout << i + 1  << " " << list_university[i].get_name_university() << std::endl;
+    }
+}
+
+void System::delete_university() {
+    print_university();
+    std::cout << "____________________________" << std::endl;
+    std::cout << "Введите номер ВУЗа:";
+    int index = 0;
+    try {
+        std::cin >> index;
+        int a = index;
+
+        if((index > list_university.size()) || (index < 0))
+            throw 1;
+
+    } catch (int a){
+        std::cout << "Институт с таким номером отсутствует." << std::endl;
+        return;
+    }
+    list_university.erase(list_university.begin() + index - 1);
+    std::cout << "-- ВУЗ успешно удалён --" << std::endl;
+}
+
+void System::work_with_groups() {
+        int q = 0;
+        while(true) {
+            std::cout << "____________________________" << std::endl;
+            std::cout << "Меню:" << std::endl;
+            std::cout << "1 - добавить группу" << std::endl;
+            std::cout << "2 - удалить группу" << std::endl;
+            std::cout << "3 - список групп в институте" << std::endl;
+            std::cout << "0 - назад" << std::endl;
+            std::cin >> option;
+            switch(option - 1) {
+                case 0: {system.addGroup(); break;}
+                    // case 1: {system.delGroup(); break;}
+                case 3: { q += 1; break;}
+            }
+            if(q != 0)
+                break;
+        }
+}
+
+
