@@ -12,7 +12,7 @@ private:
     std::string name_subject;
     std::string type_subject;
     unsigned hour_subject = 0;
-    Mark *mark{};
+    Mark *mark;
 public:
     Subject();
     Subject(std::string, int);

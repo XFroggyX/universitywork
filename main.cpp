@@ -3,16 +3,6 @@
 
 #include "subject/Subject.h"
 int main() {
-
-    Plan p;
-    Subject q;
-    Subject w;
-    Subject c;
-    p.add_subject(q);
-    p.add_subject(w);
-    p.add_subject(c);
-    p.print_plan();
-    return 0;
     setlocale(LC_ALL, "Russian");
 
     System system;

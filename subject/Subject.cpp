@@ -37,10 +37,10 @@ Subject::Subject() {
 
     if(select == 1) {
         type_subject = "Зачёт";
-        mark = new Bool_mark(false);
+        mark = new Bool_mark();
     } else {
         type_subject = "Дифференцированный зачёт/Экзамен";
-        mark = new Int_mark(1);
+        mark = new Int_mark();
     }
 }
 
