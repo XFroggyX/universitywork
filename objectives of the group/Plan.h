@@ -6,11 +6,11 @@
 #include <string>
 
 class Plan {
-public:
-    std::vector<Subject> list_subject;
+private:
+    std::vector<Subject> list_subjects;
     unsigned items_plan = 0;
 public:
-    void add_subject(Subject);
+    void add_subject(const Subject&);
     void delete_subject();
     void print_plan();
     unsigned size_plan();

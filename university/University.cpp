@@ -35,10 +35,6 @@ std::string University::get_name_university() const {
     return name_university;
 }
 
-std::vector<Group> University::get_group() const {
-    return list_groups;
-}
-
 Group &University::get_group(int i)  {
     return list_groups[i];
 }
@@ -62,9 +58,6 @@ void University::delete_group() {
     std::cout << "-- группа успешно удалён --" << std::endl;
 }
 
-void University::print_name_university() {
-    std::cout << "Назавание институту: " << name_university << std::endl;
-}
 
 void University::print_group() const {
     std::cout << "Список групп: " << std::endl;

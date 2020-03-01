@@ -62,7 +62,7 @@ void System::work_with_groups(int u_index) {
         try {
             std::cin >> select;
 
-            if((select > 3) || (select < 0))
+            if((select > 4) || (select < 0))
                 throw 1;
 
         } catch (int a){
@@ -85,12 +85,128 @@ void System::work_with_groups(int u_index) {
                 list_university[u_index].print_group();
                 break;
             }
+            case 4: {
+                int index;
+                list_university[u_index].print_group();
+                std::cout << "Выберите группу: ";
+                std::cin >> index;
+                work_with_students(u_index, index-1);
+                q--;
+                break;
+            }
             case 0: {
                 q += 1;
                 break;
             }
         }
         if (q != 0)
+            break;
+    }
+}
+
+void System::work_with_students(int u_index, int g_index) {
+    while(true) {
+        int select;
+        int q = -1;
+        int option = 0;
+        std::cout << "____________________________" << std::endl;
+        std::cout << "Меню:" << std::endl;
+        std::cout << "1 - добавить студента" << std::endl;
+        std::cout << "2 - удалить студента" << std::endl;
+        std::cout << "3 - список студентов в группе" << std::endl;
+        std::cout << "4 - работа с планом" << std::endl;
+        std::cout << "5 - выдать допуск студенту" << std::endl;
+        std::cout << "0 - назад" << std::endl;
+        std::cout << "Ввод: ";
+        try {
+            std::cin >> select;
+
+            if((select > 4) || (select < 0))
+                throw 1;
+
+        } catch (int a){
+            std::cout << "Данный пункт меню отсутствует" << std::endl;
+            return;
+        }
+
+        switch (select) {
+            case 1: {
+                Student gp;
+                list_university[u_index].get_group(g_index).add_student(gp);
+                std::cout << "-- студент успешно добавлен --" << std::endl;
+                break;
+            }
+            case 2: {
+                list_university[u_index].get_group(g_index).delete_student();
+                break;
+            }
+            case 3: {
+                list_university[u_index].get_group(g_index).print_group_students();
+                break;
+            }
+            case 4: {
+                work_with_plan(u_index, g_index);
+                break;
+            }
+            case 0: {
+                q += 1;
+                break;
+            }
+        }
+        if (q == 0)
+            break;
+    }
+}
+
+void System::work_with_plan(int u_index, int g_index) {
+    while(true) {
+        int select;
+        int q = -1;
+        int option = 0;
+        std::cout << "____________________________" << std::endl;
+        std::cout << "Меню:" << std::endl;
+        std::cout << "1 - добавить предмет в план" << std::endl;
+        std::cout << "2 - удалить предмет из плана" << std::endl;
+        std::cout << "3 - план группы" << std::endl;
+        std::cout << "0 - назад" << std::endl;
+        std::cout << "Ввод: ";
+
+        try {
+            std::cin >> select;
+
+            if((select > 4) || (select < 0))
+                throw 1;
+
+        } catch (int a){
+            std::cout << "Данный пункт меню отсутствует" << std::endl;
+            return;
+        }
+
+        switch (select) {
+            case 1: {
+                Subject sb;
+                list_university[u_index].get_group(g_index).get_plan().add_subject(sb);
+                std::cout << "-- передмет успешно добавлен --" << std::endl;
+                break;
+            }
+            case 2: {
+                list_university[u_index].get_group(g_index).delete_student();
+                break;
+            }
+            case 3: {
+                list_university[u_index].get_group(g_index).get_plan().print_plan();
+                break;
+            }
+            case 4: {
+                work_with_plan(u_index, g_index);
+                break;
+            }
+            case 0: {
+                q += 1;
+                break;
+            }
+        }
+        if (q == 0)
             break;
     }
 }

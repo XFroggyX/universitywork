@@ -8,6 +8,7 @@
 
 class Group {
 private:
+    Plan group_plan;
     std::vector<Student> list_students;
     std::vector<Student> list_allows_students;
     std::string group_name;
@@ -17,10 +18,11 @@ public:
     Group(std::string);
     void add_student(const Student&);
     Student& get_student(int);
+    Plan& get_plan();
     std::string get_name_group() const;
     std::vector<Student> get_students() const;
-    void delete_student(int);
-    void print_group();
+    void delete_student(int i = -1);
+    void print_group_students();
     void allow_student();
 };
 

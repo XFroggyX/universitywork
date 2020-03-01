@@ -18,7 +18,7 @@ std::string studstr(std::string input_string) {
 Student::Student() {
     std::cout << "Введите ФИО студента:";
     std::string new_name_student;
-    getline(std::cin, new_name_student);
+    std::cin >> new_name_student;
     new_name_student = studstr(new_name_student);
     name_student = new_name_student;
 }

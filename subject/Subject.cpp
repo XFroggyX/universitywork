@@ -17,7 +17,7 @@ std::string split_string(std::string input_string) {
 Subject::Subject() {
     std::string name_sub;
     std::cout << "Введите название предмета: ";
-    getline(std::cin, name_sub);
+    std::cin >> name_sub;
     name_sub = split_string(name_sub);
     name_subject = name_sub;
 
@@ -36,16 +36,11 @@ Subject::Subject() {
     }
 
     if(select == 1) {
-        type_subject = "Bool";
-        mark = new Bool_mark();
+        type_subject = "Зачёт";
+        mark = new Bool_mark(false);
     } else {
-        type_subject = "Int";
-        mark = new Int_mark();
-
-      /*  auto *m = dynamic_cast<Int_mark*>(mark);
-
-        if (m)
-            m->print_mark(); */
+        type_subject = "Дифференцированный зачёт/Экзамен";
+        mark = new Int_mark(1);
     }
 }
 
@@ -119,10 +114,10 @@ void Subject::print_name_subject() const {
 }
 
 void Subject::print_subject_mark() const {
-    if(type_subject == "Int") {
+    if(type_subject == "Дифференцированный зачёт/Экзамен") {
         auto m = dynamic_cast<Int_mark*>(mark);
         m->print_mark();
-    } else if(type_subject == "Bool") {
+    } else if(type_subject == "Зачёт") {
         auto m = dynamic_cast<Bool_mark*>(mark);
         m->print_mark();
     } else {
@@ -147,14 +142,10 @@ void Subject::change_mark(bool new_mark) {
     }
 }
 
-Subject::~Subject() {
-    delete mark;
-}
 
 void Subject::print_hour() {
     std::cout << "Часы за предмет: " << hour_subject << std::endl;
 }
-
 
 void Subject::add_task() {
     int type = -1;
@@ -221,4 +212,16 @@ void Subject::add_task() {
             break;
         }
     }
+}
+
+std::string Subject::get_name_subject() {
+    return name_subject;
+}
+
+Subject::~Subject() {
+    delete mark;
+}
+
+std::string Subject::get_type_subject() {
+    return type_subject;
 }

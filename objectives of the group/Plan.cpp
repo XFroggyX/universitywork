@@ -13,18 +13,19 @@ std::string planstr(std::string input_string) {
     return input_string;
 }
 
-void Plan::add_subject(Subject subject) {
-    list_subject.push_back(subject);
+void Plan::add_subject(const Subject& subject) {
+    list_subjects.push_back(subject);
 }
 
-/*
+
 void Plan::print_plan() {
     std::cout << "Предметы в плане:" << std::endl;
-    for(int i = 0; i < plan_sub.size(); i++) {
-        std::cout << "#" << i << plan_sub[i] << std::endl;
+    for(int i = 0; i < list_subjects.size(); i++) {
+        std::cout << i + 1  << " " << list_subjects[i].get_name_subject() << list_subjects[i].get_type_subject() << std::endl;
     }
 }
 
+/*
 void Plan::delete_subject() {
     print_paln();
     std::cout << "Какой предмет желаете удалить из плана. ";

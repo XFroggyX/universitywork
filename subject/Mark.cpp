@@ -39,8 +39,7 @@ Mark::~Mark() = default;
 Int_mark::Int_mark() {
     std::string str_mark;
     std::cout << "Введите оценку: ";
-    std::cin.ignore();
-    std::getline(std::cin, str_mark);
+    std::cin >> str_mark;
 
     str_mark = ltrim(rtrim(str_mark));
     int new_mark;

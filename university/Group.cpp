@@ -37,16 +37,38 @@ Student &Group::get_student(int i) {
     return list_students[i];
 }
 
+Plan &Group::get_plan() {
+    return group_plan;
+}
+
 std::string Group::get_name_group() const {
     return group_name;
 }
 
-std::vector<Student> Group::get_students() const {
-    return list_students;
+void Group::delete_student(int i) {
+    print_group_students();
+    std::cout << std::endl << "____________________________" << std::endl;
+    std::cout << "Введите номер студента:";
+    int student_index = 0;
+    try {
+        std::cin >> student_index;
+
+        if((student_index > list_students.size()) || (student_index < 0))
+            throw 1;
+
+    } catch (int a){
+        std::cout << "Студент с таким номером отсутствует." << std::endl;
+        return;
+    }
+    list_students.erase(list_students.begin() + i);
+    std::cout << "-- студент успешно удалён --" << std::endl;
 }
 
-void Group::delete_student(int i) {
-    list_students.erase(list_students.begin() + i);
+void Group::print_group_students() {
+    std::cout << "Список студентов: " << std::endl;
+    for (int i = 0; i < list_students.size(); i++) {
+        std::cout << i + 1 << ". " << list_students[i].get_name_student() << std::endl;
+    }
 }
 
 
