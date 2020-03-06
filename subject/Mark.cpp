@@ -22,151 +22,103 @@ std::string rtrim(const std::string &str) {
     return s;
 }
 
-void Mark::change_mark(int new_mark) {
-    mark = new_mark;
+Mark::Mark() {
+    std::string str_mark;
+    std::cout << "Выберите тип оценки: " << std::endl;
+    std::cout << "1. Зачёт" << std::endl;
+    std::cout << "2. Диф. зачёт" << std::endl;
+    std::cout << "Ввод: ";
+
+    try{
+        std::cin >> str_mark;
+        str_mark = rtrim(ltrim(str_mark));
+
+        if ((str_mark != "1") && (str_mark != "2"))
+            throw 1;
+    } catch (int a) {
+        std::cout << "Данный пункт меню отстутствует оценка задана автоматически." << std::endl;
+        mark = "1";
+        type = "Диф. зачёт";
+    }
+
+    if(str_mark == "1") {
+        mark = "No";
+        type = "Зачёт";
+    } else if(str_mark == "2") {
+        mark = "1";
+        type = "Диф. зачёт";
+    } else {
+        mark = "1";
+        type = "Диф. зачёт";
+        std::cout <<"Ошибка ввода. Значения были заданы автоматически." << std::endl;
+    }
 }
 
-void Mark::print_mark() {
-    std::cout << mark;
+Mark::Mark(int) {
+    mark = "1";
+    type = "Диф. зачёт";
 }
 
-int Mark::return_mark() {
-    return mark;
+Mark::Mark(bool) {
+    mark = "Не зачёт";
+    type = "Зачёт";
 }
 
 Mark::~Mark() = default;
 
-Int_mark::Int_mark() {
-    std::string str_mark;
-    std::cout << "Введите оценку: ";
-    std::cin >> str_mark;
-
-    str_mark = ltrim(rtrim(str_mark));
-    int new_mark;
-    try {
-        new_mark = stoi(str_mark);
-    } catch(...) {
-        std::cout <<"Изменение неудалось. Вы ввели не число. Установлено значение по умолчанию.";
-        mark = 1;
-        return ;
-    }
-
-    try {
-        if((new_mark < 1) || (new_mark > 5))
-            throw 1;
-        else
-            mark = new_mark;
-    } catch(int a) {
-        std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было установлино по умолчанию." << std::endl;
-        mark = 1;
-    }
-}
-
-Int_mark::Int_mark(int new_mark) {
-    try {
-        if((new_mark < 1) || (new_mark > 5))
-            throw 1;
-        else
-            mark = new_mark;
-    } catch(int a) {
-            std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было задано, как 1." << std::endl;
-            mark = 1;
-    }
-}
-
-void Int_mark::change_mark(int new_mark) {
-    if(new_mark == 0 ) {
+void Mark::change_mark() {
+    if(type == "Зачёт") {
+        std::string _new_mark = "No";
+        if (mark == "No") {
+            std::cout << "Желаете поставтить зачёт?" << std::endl;
+            std::cout << "Ввод (Yes/No): ";
+            std::cin >> _new_mark;
+            _new_mark = ltrim(rtrim(_new_mark));
+        }
+        if (_new_mark == "No") {
+            mark = "No";
+        } else if (_new_mark == "Yes") {
+            mark = "Yes";
+        } else {
+            std::cout << "Ошибка ввода оценки." << std::endl;
+        }
+    } else if(type == "Диф. зачёт") {
         std::string str_mark;
         std::cout << "Введите новую оценку: ";
         std::cin >> str_mark;
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+        int new_mark;
         str_mark = ltrim(rtrim(str_mark));
         try {
             new_mark = stoi(str_mark);
-        } catch(...) {
-            std::cout <<"Изменение неудалось. Вы ввели не число";
+        } catch (...) {
+            std::cout << "Изменение неудалось. Вы ввели не число" << std::endl;
+        }
+
+        try {
+            if ((new_mark < 1) || (new_mark > 5))
+                throw 1;
+            else
+                mark = std::to_string(new_mark);
+        } catch (int a) {
+            std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было не изменено." << std::endl;
         }
     }
-
-    try {
-        if((new_mark < 1) || (new_mark > 5))
-            throw 1;
-        else
-            mark = new_mark;
-    } catch(int a) {
-        std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было не изменено." << std::endl;
-    }
 }
 
-void Int_mark::print_mark() const {
-    std::cout << "Ваша оценка: " << mark << std::endl;
-}
-
-int Int_mark::return_mark() const {
-    return mark;
-}
-
-Int_mark::~Int_mark() = default;
-
-Bool_mark::Bool_mark() {
-    std::string str_mark;
-    std::cout << "Выберите оценку: " << std::endl << "1. Зачёт" << std::endl;
-    std::cout << "2. Не зачёт" << std::endl << "Ввод: ";
-    std::cin >> str_mark;
-
-    str_mark = ltrim(rtrim(str_mark));
-    int int_mark = stoi(str_mark);
-
-    if(int_mark == 1) {
-        mark = 1;
-    } else if(int_mark == 2) {
-        mark = 0;
-    } else {
-        std::cout << "Вы выбрали неверное значение." << std::endl;
-        return ;
-    }
-}
-
-Bool_mark::Bool_mark(bool new_mark) {
-        mark = new_mark;
-}
-
-void Bool_mark::change_mark(bool new_mark) {
-    if(!new_mark) {
-        std::string str_mark;
-        std::cout << "Выберите оценку: " << std::endl << "1. Зачёт" << std::endl;
-        std::cout << "2. Не зачёт" << std::endl << "Ввод: ";
-        std::cin >> str_mark;
-
-        str_mark = ltrim(rtrim(str_mark));
-        int int_mark = stoi(str_mark);
-
-        if(int_mark == 1) {
-            mark = 1;
-        } else if(int_mark == 2) {
-            mark = 0;
+int Mark::return_mark() {
+    if(type == "Зачёт"){
+        if(mark == "Yes") {
+            return 1;
         } else {
-            std::cout << "Вы выбрали неверное значение. Оценка не была изменена" << std::endl;
-            return ;
+            return 0;
         }
     } else {
-        mark = new_mark;
+        int a = stoi(mark);
+        return a;
     }
 }
 
-void Bool_mark::print_mark() const {
-    if(mark == 0) {
-        std::cout << "Ваша оценка: " << "Незачёт" << std::endl;
-    } else {
-        std::cout << "Ваша оценка: " << "Зачёт" << std::endl;
-    }
+std::string Mark::return_type() {
+    return type;
 }
-
-int Bool_mark::return_mark() const {
-    return mark;
-}
-
-Bool_mark::~Bool_mark() = default;
-
-

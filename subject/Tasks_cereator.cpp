@@ -3,21 +3,26 @@
 Tasks_cereator::~Tasks_cereator() = default;
 
 Task *Concrete_Lab_work::create_subject() {
-    return new Lab_work;
+    Mark n;
+    return new Lab_work(n);
 }
 
 Task *Concrete_Rgz::create_subject() {
-    return new Rgz;
+    Mark n;
+    return new Rgz(n);
 }
 
 Task *Concrete_Coursework::create_subject() {
-    return new Coursework;
+    Mark n;
+    return new Coursework(n);
 }
 
 Task *Concrete_Test::create_subject() {
-    return new Test;
+    Mark n;
+    return new Test(n);
 }
 
 Task *Concrete_Exam::create_subject() {
-    return new Exam;
+    Mark n;
+    return new Exam(n);
 }
