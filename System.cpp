@@ -53,10 +53,11 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
         int option = 0;
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
-        std::cout << "1 - добавить группу" << std::endl;
-        std::cout << "2 - удалить группу" << std::endl;
-        std::cout << "3 - список групп в институте" << std::endl;
-        std::cout << "4 - работа с группами" << std::endl;
+        std::cout << "1 - выставить оценку за предмет" << std::endl;
+        std::cout << "2 - выставить оценку за тест" << std::endl;
+        std::cout << "3 - список не сданных зачётов" << std::endl;
+        std::cout << "4 - список не сданных экзаменов" << std::endl;
+        std::cout << "5 - список всех предметов и заданий" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
@@ -72,16 +73,31 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
 
         switch (select) {
             case 1: {
-                Group gp;
-                list_university[u_index].add_group(gp);
-                std::cout << "-- группа успешно добавлена --" << std::endl;
+                list_university[u_index].get_group(g_index).get_student(s_index).get_session().get_session().print_plan();
+                int index;
+                std::cout << "Выберите предмет: ";
+                std::cin >> index;
+                list_university[u_index].get_group(g_index).get_student(s_index).get_session().get_session().get_subject(index - 1).change_mark();
                 break;
             }
             case 2: {
-                list_university[u_index].delete_group();
+                list_university[u_index].get_group(g_index).get_student(s_index).get_session().get_session().print_plan();
+                int index;
+                std::cout << "Выберите предмет: ";
+                std::cin >> index;
+                list_university[u_index].get_group(g_index).get_student(s_index).get_session().get_session().get_subject(index - 1).print_task_list();
+                list_university[u_index].get_group(g_index).get_student(s_index).get_session().get_session().get_subject(index - 1).task_change_mark();
                 break;
             }
             case 3: {
+                list_university[u_index].print_group();
+                break;
+            }
+            case 4: {
+                list_university[u_index].print_group();
+                break;
+            }
+            case 5: {
                 list_university[u_index].print_group();
                 break;
             }

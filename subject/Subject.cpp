@@ -189,3 +189,11 @@ bool Subject::its_subj() {
     }
     return false;
 }
+
+void Subject::task_change_mark() {
+    print_task_list();
+    int index;
+    std::cout << "Оценку за какой предмет вы хотите выставыить?" << std::endl << "Ввод: ";
+    std::cin >> index;
+    tasks[index - 1]->change_mark();
+}

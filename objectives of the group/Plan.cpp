@@ -22,7 +22,7 @@ Subject &Plan::get_subject(int i) {
 }
 
 void Plan::print_plan() {
-    std::cout << "План работ:" << std::endl;
+    std::cout << "Список работ:" << std::endl;
     for(int i = 0; i < list_subjects.size(); i++) {
         std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()  << " "
             << list_subjects[i].get_type_subject() << std::endl;

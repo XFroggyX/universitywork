@@ -17,6 +17,7 @@ public:
     void work_with_plan(int u_index = -1, int g_index = -1);
     void work_with_session(int u_index = -1, int g_index = -1, int s_index = -1);
     void work_with_task(int u_index = -1, int g_index = -1, int p_index = -1);
+    void session_subj(int u_index = -1, int g_index = -1, int s_index = -1);
 };
 
 

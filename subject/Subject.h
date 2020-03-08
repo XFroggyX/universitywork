@@ -30,6 +30,7 @@ public:
     std::string get_name_subject();
     std::string get_type_subject();
     void add_task();
+    void task_change_mark();
 };
 
 

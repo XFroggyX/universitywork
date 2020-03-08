@@ -37,3 +37,11 @@ bool Student::itsallow() {
     return allows;
 }
 
+void Student::print_subject_session() {
+    student_session[0].get_session().print_plan();
+}
+
+Session &Student::get_session() {
+    return student_session[0];
+}
+
