@@ -8,23 +8,15 @@
 class Student {
 private:
     std::string name_student;
-    //Session student_session;
+    std::vector<Session> student_session;
     bool allows = false;
 public:
     Student();
-    Student(std::string);
-
-
-    //void addExam(Exam);
-    //Exam& getExam(int);
-    // vector<Exam> getExams() const;
-
     std::string get_name_student() const;
-
-
     void delStudent(int);
     void print_session();
-    bool allow();
+    void allow(Plan);
+    bool itsallow();
     unsigned average_score();
     unsigned items_session();
 };

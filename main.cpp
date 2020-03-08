@@ -6,7 +6,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
 
     System system;
-    int p_i = 1;
+    int p_i = 0;
     int option = 0;
 
     while (true) {
@@ -14,6 +14,7 @@ int main() {
             std::cout << std::endl << "_________________________________" << std::endl;
             std::cout << "Учёт успеваемости студентов" << std::endl;
             std::cout << "_________________________________" << std::endl;
+            p_i++;
         } else {
             p_i = 0;
         }
@@ -55,14 +56,13 @@ int main() {
                 std::cout << "Выберите институт: ";
                 std::cin >> index;
                 system.work_with_groups(index - 1);
-                q--;
             }
             case 0: {
                 q += 1;
                 break;
             }
         }
-        if (q != -1)
+        if (q == 0)
             break;
     }
     return 0;

@@ -11,9 +11,11 @@ private:
     unsigned items_plan = 0;
 public:
     void add_subject(Subject);
-    //void delete_subject_plan();
+    Subject& get_subject(int i);
+    void delete_subject_plan();
     void print_plan();
-   // unsigned size_plan();
+    void print_ex_subj();
+    void print_notex_subj();
 };
 
 

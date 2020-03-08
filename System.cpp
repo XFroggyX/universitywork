@@ -46,10 +46,59 @@ void System::delete_university() {
     std::cout << "-- ВУЗ успешно удалён --" << std::endl;
 }
 
+void System::work_with_session(int u_index, int g_index, int s_index) {
+    while(true) {
+        int select;
+        int q = -1;
+        int option = 0;
+        std::cout << "____________________________" << std::endl;
+        std::cout << "Меню:" << std::endl;
+        std::cout << "1 - добавить группу" << std::endl;
+        std::cout << "2 - удалить группу" << std::endl;
+        std::cout << "3 - список групп в институте" << std::endl;
+        std::cout << "4 - работа с группами" << std::endl;
+        std::cout << "0 - назад" << std::endl;
+        std::cout << "Ввод: ";
+        try {
+            std::cin >> select;
+
+            if((select > 4) || (select < 0))
+                throw 1;
+
+        } catch (int a){
+            std::cout << "Данный пункт меню отсутствует" << std::endl;
+            return;
+        }
+
+        switch (select) {
+            case 1: {
+                Group gp;
+                list_university[u_index].add_group(gp);
+                std::cout << "-- группа успешно добавлена --" << std::endl;
+                break;
+            }
+            case 2: {
+                list_university[u_index].delete_group();
+                break;
+            }
+            case 3: {
+                list_university[u_index].print_group();
+                break;
+            }
+            case 0: {
+                q += 1;
+                break;
+            }
+        }
+        if (q == 0)
+            break;
+    }
+}
+
 void System::work_with_groups(int u_index) {
     while(true) {
         int select;
-        int q = 0;
+        int q = -1;
         int option = 0;
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
@@ -99,7 +148,7 @@ void System::work_with_groups(int u_index) {
                 break;
             }
         }
-        if (q != 0)
+        if (q == 0)
             break;
     }
 }
@@ -116,12 +165,16 @@ void System::work_with_students(int u_index, int g_index) {
         std::cout << "3 - список студентов в группе" << std::endl;
         std::cout << "4 - работа с планом" << std::endl;
         std::cout << "5 - выдать допуск студенту" << std::endl;
+        std::cout << "6 - работа со студентом" << std::endl;
+        std::cout << "7 - список допущенных студентов" << std::endl;
+        std::cout << "8 - список не допущенных студентов" << std::endl;
+        std::cout << "9 - средний бал группы за экзаменны" << std::endl; //TTTTT
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
             std::cin >> select;
 
-            if((select > 4) || (select < 0))
+            if((select > 9) || (select < 0))
                 throw 1;
 
         } catch (int a){
@@ -148,6 +201,28 @@ void System::work_with_students(int u_index, int g_index) {
                 work_with_plan(u_index, g_index);
                 break;
             }
+            case 5: {
+                list_university[u_index].get_group(g_index).allow_student(list_university[u_index].get_group(g_index).get_plan());
+                break;
+            }
+            case 6: {
+                int s_index;
+                list_university[u_index].get_group(g_index).print_group_students();
+                std::cout << "Выберите стеднет: ";
+                std::cin >> s_index;
+                work_with_session(u_index, g_index, s_index - 1);
+                break;
+            }
+            case 7: {
+                list_university[u_index].get_group(g_index).print_allow_students();
+                break;
+            }
+            case 8: {
+                break;
+            }
+            case 9: {
+                break;
+            }
             case 0: {
                 q += 1;
                 break;
@@ -168,14 +243,16 @@ void System::work_with_plan(int u_index, int g_index) {
         std::cout << "1 - добавить предмет в план" << std::endl;
         std::cout << "2 - удалить предмет из плана" << std::endl;
         std::cout << "3 - план группы" << std::endl;
-        std::cout << "4 - работа с планом" << std::endl;
+        std::cout << "4 - экзаминацеонные предметы" << std::endl;
+        std::cout << "5 - передметы с зачётами" << std::endl;
+        std::cout << "6 - работа с передметом" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
 
         try {
             std::cin >> select;
 
-            if((select > 4) || (select < 0))
+            if((select > 6) || (select < 0))
                 throw 1;
 
         } catch (int a){
@@ -191,7 +268,7 @@ void System::work_with_plan(int u_index, int g_index) {
                 break;
             }
             case 2: {
-                list_university[u_index].get_group(g_index).delete_student();
+                list_university[u_index].get_group(g_index).get_plan().delete_subject_plan();
                 break;
             }
             case 3: {
@@ -199,6 +276,14 @@ void System::work_with_plan(int u_index, int g_index) {
                 break;
             }
             case 4: {
+                list_university[u_index].get_group(g_index).get_plan().print_ex_subj();
+                break;
+            }
+            case 5: {
+                list_university[u_index].get_group(g_index).get_plan().print_notex_subj();
+                break;
+            }
+            case 6: {
                 int index;
                 list_university[u_index].get_group(g_index).get_plan().print_plan();
                 std::cout << "Выберите предмет: ";
@@ -216,7 +301,7 @@ void System::work_with_plan(int u_index, int g_index) {
     }
 }
 
-void System::work_with_task(int u_index, int g_index, int) {
+void System::work_with_task(int u_index, int g_index, int p_index) {
     while(true) {
         int select;
         int q = -1;
@@ -243,25 +328,16 @@ void System::work_with_task(int u_index, int g_index, int) {
 
         switch (select) {
             case 1: {
-                Subject sb;
-                list_university[u_index].get_group(g_index).get_plan().add_subject(sb);
-                std::cout << "-- передмет успешно добавлен --" << std::endl;
+                list_university[u_index].get_group(g_index).get_plan().get_subject(p_index).add_task();
+                std::cout << "-- задание успешно добавлено --" << std::endl;
                 break;
             }
             case 2: {
-                list_university[u_index].get_group(g_index).delete_student();
+                list_university[u_index].get_group(g_index).get_plan().get_subject(p_index).delete_task();
                 break;
             }
             case 3: {
-                list_university[u_index].get_group(g_index).get_plan().print_plan();
-                break;
-            }
-            case 4: {
-                int index;
-                list_university[u_index].get_group(g_index).get_plan().print_plan();
-                std::cout << "Выберите предмет: ";
-                std::cin >> index;
-                work_with_task(u_index, g_index, index - 1);
+                list_university[u_index].get_group(g_index).get_plan().get_subject(p_index).print_task_list();
                 break;
             }
             case 0: {

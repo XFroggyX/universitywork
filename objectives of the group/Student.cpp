@@ -23,10 +23,17 @@ Student::Student() {
     name_student = new_name_student;
 }
 
-Student::Student(std::string new_name_student) : name_student(std::move(new_name_student)) {
-}
-
 std::string Student::get_name_student() const {
     return name_student;
+}
+
+void Student::allow(Plan pl) {
+    allows = true;
+    Session ss(std::move(pl));
+    student_session.push_back(ss);
+}
+
+bool Student::itsallow() {
+    return allows;
 }
 

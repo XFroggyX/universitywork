@@ -10,6 +10,7 @@ public:
     virtual std::string get_name_work() const = 0;
     virtual void set_mark() = 0;
     virtual void change_mark() = 0;
+    virtual std::string get_type_task() = 0;
     virtual Mark& get_mark() = 0;
 };
 
@@ -23,6 +24,7 @@ public:
     void set_name_work(std::string);
     std::string get_name_work() const;
     void set_mark();
+    std::string get_type_task();
     void change_mark();
     Mark& get_mark();
 
@@ -38,6 +40,7 @@ public:
     void set_name_work(std::string);
     std::string get_name_work() const;
     void set_mark();
+    std::string get_type_task();
     void change_mark();
     Mark& get_mark();
 };
@@ -53,6 +56,7 @@ public:
     std::string get_name_work() const;
     void set_mark();
     void change_mark();
+    std::string get_type_task();
     Mark& get_mark();
 };
 
@@ -67,6 +71,7 @@ public:
     std::string get_name_work() const;
     void set_mark();
     void change_mark();
+    std::string get_type_task();
     Mark& get_mark();
 };
 
@@ -81,6 +86,7 @@ public:
     std::string get_name_work() const;
     void set_mark();
     void change_mark();
+    std::string get_type_task();
     Mark& get_mark();
 };
 

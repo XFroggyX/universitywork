@@ -17,12 +17,43 @@ void Plan::add_subject(Subject subject) {
     list_subjects.push_back(subject);
 }
 
+Subject &Plan::get_subject(int i) {
+    return list_subjects[i];
+}
 
 void Plan::print_plan() {
-    std::cout << "Предметы в плане:" << std::endl;
+    std::cout << "План работ:" << std::endl;
     for(int i = 0; i < list_subjects.size(); i++) {
-        std::cout << i + 1  << " " << list_subjects[i].get_name_subject()  << " " << list_subjects[i].get_type_subject() << std::endl;
+        std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()  << " "
+            << list_subjects[i].get_type_subject() << std::endl;
     }
+}
+
+void Plan::print_ex_subj() {
+    std::cout << "План работ(экзамены):" << std::endl;
+    for(int i = 0; i < list_subjects.size(); i++) {
+        if(list_subjects[i].its_subj())
+            std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()
+                << " " << list_subjects[i].get_type_subject() << std::endl;
+    }
+}
+
+void Plan::print_notex_subj() {
+    std::cout << "План работ(зачёты):" << std::endl;
+    for(int i = 0; i < list_subjects.size(); i++) {
+        if(!list_subjects[i].its_subj())
+            std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()  << " "
+                << list_subjects[i].get_type_subject() << std::endl;
+    }
+}
+
+void Plan::delete_subject_plan() {
+    print_plan();
+    std::cout << "Какой предмет желаете удалить из плана? ";
+    std::cout << "Введите индекс предмет: " << std::endl;
+    int index;
+    std::cin >> index;
+    list_subjects.erase(list_subjects.begin() + index - 1);
 }
 
 /*

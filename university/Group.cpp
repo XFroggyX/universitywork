@@ -71,4 +71,29 @@ void Group::print_group_students() {
     }
 }
 
+void Group::allow_student(Plan pl) {
+    print_group_students();
+    std::cout << "Кого вы хотите допустить к экзамену ?" << std::endl;
+    int index;
+    std::cout << "Ввод: ";
+    std::cin >> index;
+    list_students[index - 1].allow(std::move(pl));
+}
+
+void Group::print_allow_students() {
+    std::cout << "Список студентов(допущены): " << std::endl;
+    for (int i = 0; i < list_students.size(); i++) {
+        if(list_students[i].itsallow())
+            std::cout << i + 1 << ". " << list_students[i].get_name_student() << std::endl;
+    }
+}
+
+void Group::print_not_allow_students() {
+    std::cout << "Список студентов(не допущены): " << std::endl;
+    for (int i = 0; i < list_students.size(); i++) {
+        if(!list_students[i].itsallow())
+            std::cout << i + 1 << ". " << list_students[i].get_name_student() << std::endl;
+    }
+}
+
 

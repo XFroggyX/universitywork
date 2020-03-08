@@ -24,6 +24,9 @@ public:
     void add_hour(unsigned);
     void print_hour();
     void print_task_name();
+    void delete_task();
+    void print_task_list();
+    bool its_subj();
     std::string get_name_subject();
     std::string get_type_subject();
     void add_task();

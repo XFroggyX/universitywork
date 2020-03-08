@@ -97,7 +97,7 @@ void Subject::add_task() {
 
     std::cout << "Виды работ:" << std::endl;
     std::cout << "1. Лабораторная" << std::endl << "2. РГЗ" << std::endl << "3. Курсовая работа" << std::endl
-    <<"4. Тест" << std::endl << std::endl;
+    <<"4. Тест" << std::endl  << "5. Экзамен" << std::endl;
     std::cout << "Выберите тип задания:";
 
     try {
@@ -164,4 +164,28 @@ void Subject::print_task_name() {
     for(int i = 0; i < tasks.size(); i++) {
         std::cout << i + 1 << ". " << tasks[i]->get_name_work() << std::endl;
     }
+}
+
+void Subject::delete_task() {
+    print_task_list();
+    std::cout << "Какое задание желаете удалить из предмета? ";
+    std::cout << "Введите индекс элемента: ";
+    int index;
+    std::cin >> index;
+    tasks.erase(tasks.begin() + index - 1);
+}
+
+void Subject::print_task_list() {
+    std::cout << "Список заданий по предмету: " << std::endl;
+    for(int i = 0; i < tasks.size(); i++) {
+        std::cout << i + 1 << ". " << tasks[i]->get_name_work()  << " " << tasks[i]->get_type_task()<< std::endl;
+    }
+}
+
+bool Subject::its_subj() {
+    for(int i = 0; i < tasks.size(); i++) {
+        if(tasks[i]->get_type_task() == "Экзамен")
+            return true;
+    }
+    return false;
 }
