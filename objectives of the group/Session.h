@@ -12,8 +12,10 @@ private:
 public:
     Session(Plan);
     unsigned items_sessio();
+    void print_arrears();
     Plan &get_session();
     unsigned average_score();
+    void print_inf();
 };
 
 

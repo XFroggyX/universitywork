@@ -15,6 +15,7 @@ std::string planstr(std::string input_string) {
 
 void Plan::add_subject(Subject subject) {
     list_subjects.push_back(subject);
+    items_plan++;
 }
 
 Subject &Plan::get_subject(int i) {
@@ -54,6 +55,11 @@ void Plan::delete_subject_plan() {
     int index;
     std::cin >> index;
     list_subjects.erase(list_subjects.begin() + index - 1);
+    items_plan--;
+}
+
+int Plan::get_size_plan() {
+    return items_plan;
 }
 
 /*

@@ -16,6 +16,7 @@ public:
     void print_plan();
     void print_ex_subj();
     void print_notex_subj();
+    int get_size_plan();
 };
 
 

@@ -178,7 +178,18 @@ void Subject::delete_task() {
 void Subject::print_task_list() {
     std::cout << "Список заданий по предмету: " << std::endl;
     for(int i = 0; i < tasks.size(); i++) {
-        std::cout << i + 1 << ". " << tasks[i]->get_name_work()  << " " << tasks[i]->get_type_task()<< std::endl;
+        if(tasks[i]->get_mark().return_type() == "Экзамен") {
+            if(tasks[i]->get_mark().return_mark() == 1) {
+                std::cout << i + 1 << ". " << tasks[i]->get_name_work()  << " " << tasks[i]->get_type_task()
+                        << "Зачёт" << std::endl;
+            } else {
+                std::cout << i + 1 << ". " << tasks[i]->get_name_work()  << " " << tasks[i]->get_type_task()
+                          << "Не зачёт" << std::endl;
+            }
+        } else {
+            std::cout << i + 1 << ". " << tasks[i]->get_name_work()  << " " << tasks[i]->get_type_task()
+            << tasks[i]->get_mark().return_mark() << std::endl;
+        }
     }
 }
 
@@ -196,4 +207,34 @@ void Subject::task_change_mark() {
     std::cout << "Оценку за какой предмет вы хотите выставыить?" << std::endl << "Ввод: ";
     std::cin >> index;
     tasks[index - 1]->change_mark();
+}
+
+bool Subject::subj_delivered() {
+    if (type_subject == "Диф. зачёт") {
+        if (mark_subj[0].return_mark() > 3) {
+            return true;
+        }
+    } else if (type_subject == "Зачёт") {
+        if (mark_subj[0].return_mark() == 1) {
+            return true;
+        }
+    } else {
+        return false;
+    }
+    return false;
+}
+
+void Subject::print_task_delivered() {
+    int j = 1;
+    for(int i = 0; i < tasks.size(); i++) {
+        if(tasks[i]->get_mark().return_type() == "Диф. зачёт") {
+            if(tasks[i]->get_mark().return_mark() < 3)
+                std::cout << j++ << " " << tasks[i]->get_name_work() << " " << tasks[i]->get_type_task()<< std::endl;
+        } else if(tasks[i]->get_mark().return_type() == "Зачёт") {
+            if(tasks[i]->get_mark().return_mark() != 1)
+                std::cout << j++ << " " << tasks[i]->get_name_work() << " " << tasks[i]->get_type_task()<< std::endl;
+        }
+        if(j == 1)
+            std::cout << "У данного нет не сданных заданий" << std::endl;
+    }
 }

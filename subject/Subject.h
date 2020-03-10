@@ -31,6 +31,8 @@ public:
     std::string get_type_subject();
     void add_task();
     void task_change_mark();
+    bool subj_delivered();
+    void print_task_delivered();
 };
 
 

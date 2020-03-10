@@ -18,9 +18,13 @@ public:
     void print_session();
     void allow(Plan);
     bool itsallow();
+    void list_exam();
+    void list_not_ex();
     Session &get_session();
     unsigned average_score();
     unsigned items_session();
+    void print_delivered();
+    void print_full_inf();
 };
 
 

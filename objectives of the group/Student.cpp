@@ -45,3 +45,20 @@ Session &Student::get_session() {
     return student_session[0];
 }
 
+void Student::list_exam() {
+    student_session[0].get_session().print_ex_subj();
+}
+
+void Student::list_not_ex() {
+    student_session[0].get_session().print_notex_subj();
+}
+
+void Student::print_delivered() {
+    student_session[0].print_arrears();
+}
+
+void Student::print_full_inf() {
+    student_session[0].print_inf();
+}
+
+
