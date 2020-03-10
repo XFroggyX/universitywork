@@ -57,12 +57,13 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
         std::cout << "2 - список зачётов" << std::endl;
         std::cout << "3 - долги по предметам" << std::endl;
         std::cout << "4 - полная информация по сессии" << std::endl;
+        std::cout << "5 - допущен или нет ?" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
             std::cin >> select;
 
-            if((select > 4) || (select < 0))
+            if((select > 5) || (select < 0))
                 throw 1;
 
         } catch (int a){
@@ -86,6 +87,12 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
             case 4: {
                 list_university[u_index].get_group(g_index).get_student(s_index).print_full_inf();
                 break;
+            }
+            case 5: {
+                if(list_university[u_index].get_group(g_index).get_student(s_index).i_allow())
+                    std::cout << "Вы допущены" << std::endl;
+                else
+                    std::cout << "Вы не допущены" << std::endl;
             }
             case 0: {
                 q += 1;
@@ -170,13 +177,14 @@ void System::work_with_students(int u_index, int g_index) {
         std::cout << "6 - работа со студентом" << std::endl;
         std::cout << "7 - список допущенных студентов" << std::endl;
         std::cout << "8 - список не допущенных студентов" << std::endl;
-        std::cout << "9 - средний бал группы за экзаменны" << std::endl; //TTTTT
+        std::cout << "9 - выставить оценку студенту" << std::endl;
+        std::cout << "10 - средний бал группы за экзаменны" << std::endl; //TTTTT
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
             std::cin >> select;
 
-            if((select > 9) || (select < 0))
+            if((select > 10) || (select < 0))
                 throw 1;
 
         } catch (int a){
@@ -223,6 +231,10 @@ void System::work_with_students(int u_index, int g_index) {
                 break;
             }
             case 9: {
+
+                break;
+            }
+            case 10: {
                 break;
             }
             case 0: {

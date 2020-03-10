@@ -78,6 +78,7 @@ void Group::allow_student(Plan pl) {
     std::cout << "Ввод: ";
     std::cin >> index;
     list_students[index - 1].allow(std::move(pl));
+    allow_students++;
 }
 
 void Group::print_allow_students() {

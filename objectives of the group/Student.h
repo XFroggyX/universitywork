@@ -12,6 +12,7 @@ private:
     bool allows = false;
 public:
     Student();
+    bool i_allow();
     std::string get_name_student() const;
     void delStudent(int);
     void print_subject_session();

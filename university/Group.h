@@ -13,6 +13,7 @@ private:
     std::vector<Student> list_allows_students;
     std::string group_name;
     unsigned size_group{};
+    int allow_students = 0;
 public:
     Group();
     Group(std::string);

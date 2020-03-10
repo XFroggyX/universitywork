@@ -28,9 +28,9 @@ std::string Student::get_name_student() const {
 }
 
 void Student::allow(Plan pl) {
-    allows = true;
     Session ss(std::move(pl));
     student_session.push_back(ss);
+    allows = true;
 }
 
 bool Student::itsallow() {
@@ -59,6 +59,10 @@ void Student::print_delivered() {
 
 void Student::print_full_inf() {
     student_session[0].print_inf();
+}
+
+bool Student::i_allow() {
+    return allows;
 }
 
 
