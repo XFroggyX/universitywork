@@ -232,7 +232,7 @@ void System::work_with_students(int u_index, int g_index) {
             case 6: {
                 int s_index;
                 list_university[u_index].get_group(g_index).print_group_students();
-                std::cout << "Выберите стеднет: ";
+                std::cout << "Выберите студента: ";
                 std::cin >> s_index;
                 work_with_session(u_index, g_index, s_index - 1);
                 break;
