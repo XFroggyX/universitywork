@@ -27,7 +27,7 @@ University::University() {
 University::University(std::string name_university_) : name_university(std::move(name_university_)) {
 }
 
-void University::add_group(Group new_group) {
+void University::add_group(const Group& new_group) {
     list_groups.push_back(new_group);
 }
 
@@ -50,7 +50,7 @@ void University::delete_group() {
         if((group_index > list_groups.size()) || (group_index < 0))
             throw 1;
 
-    } catch (int a){
+    } catch (...){
         std::cout << "Группа с таким номером отсутствует." << std::endl;
         return;
     }

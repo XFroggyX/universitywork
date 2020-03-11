@@ -56,9 +56,8 @@ void Plan::delete_subject_plan() {
     try {
         std::cin >> index;
         if((index > items_plan) || (items_plan < 0)){
-
+            throw 1;
         }
-
 
     } catch(...) {
         std::cout << "Данный предмет отсутствует. Предмет неудалён." << std::endl;

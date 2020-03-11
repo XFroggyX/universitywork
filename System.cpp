@@ -28,17 +28,18 @@ void System::print_university() {
 
 void System::delete_university() {
     print_university();
+    std::string swap;
     std::cout << std::endl << "____________________________" << std::endl;
     std::cout << "Введите номер ВУЗа:";
     int index = 0;
     try {
-        std::cin >> index;
-        int a = index;
+        std::cin >> swap;
+        index = stoi(swap);
 
         if((index > list_university.size()) || (index < 0))
-            throw 1;
+            throw std::exception();
 
-    } catch (int a){
+    } catch (...){
         std::cout << "Институт с таким номером отсутствует." << std::endl;
         return;
     }
@@ -50,7 +51,8 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
     while(true) {
         int select;
         int q = -1;
-        int option = 0;
+        std::string swap;
+
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - список экзаменов" << std::endl;
@@ -60,15 +62,17 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
         std::cout << "5 - допущен или нет ?" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
+
         try {
-            std::cin >> select;
+            std::cin >> swap;
+            select = stoi(swap);
 
             if((select > 5) || (select < 0))
-                throw 1;
+                throw std::exception();
 
-        } catch (int a){
+        } catch (...){
             std::cout << "Данный пункт меню отсутствует" << std::endl;
-            return;
+            continue;
         }
 
         switch (select) {
@@ -98,6 +102,9 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
                 q += 1;
                 break;
             }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
+            }
         }
         if (q == 0)
             break;
@@ -107,8 +114,8 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
 void System::work_with_groups(int u_index) {
     while(true) {
         int select;
+        std::string swap;
         int q = -1;
-        int option = 0;
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - добавить группу" << std::endl;
@@ -117,15 +124,17 @@ void System::work_with_groups(int u_index) {
         std::cout << "4 - работа с группами" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
+
         try {
-            std::cin >> select;
+            std::cin >> swap;
+            select = stoi(swap);
 
             if((select > 4) || (select < 0))
-                throw 1;
+                throw std::exception();
 
-        } catch (int a){
+        } catch (...){
             std::cout << "Данный пункт меню отсутствует" << std::endl;
-            return;
+            continue;
         }
 
         switch (select) {
@@ -156,6 +165,9 @@ void System::work_with_groups(int u_index) {
                 q += 1;
                 break;
             }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
+            }
         }
         if (q == 0)
             break;
@@ -166,7 +178,8 @@ void System::work_with_students(int u_index, int g_index) {
     while(true) {
         int select;
         int q = -1;
-        int option = 0;
+        std::string swap;
+
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - добавить студента" << std::endl;
@@ -182,14 +195,15 @@ void System::work_with_students(int u_index, int g_index) {
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
-            std::cin >> select;
+            std::cin >> swap;
+            select = stoi(swap);
 
             if((select > 10) || (select < 0))
-                throw 1;
+                throw std::exception();
 
-        } catch (int a){
+        } catch (...){
             std::cout << "Данный пункт меню отсутствует" << std::endl;
-            return;
+            continue;
         }
 
         switch (select) {
@@ -246,6 +260,9 @@ void System::work_with_students(int u_index, int g_index) {
                 q += 1;
                 break;
             }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
+            }
         }
         if (q == 0)
             break;
@@ -256,7 +273,8 @@ void System::work_with_plan(int u_index, int g_index) {
     while(true) {
         int select;
         int q = -1;
-        int option = 0;
+        std::string swap;
+
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - добавить предмет в план" << std::endl;
@@ -269,14 +287,15 @@ void System::work_with_plan(int u_index, int g_index) {
         std::cout << "Ввод: ";
 
         try {
-            std::cin >> select;
+            std::cin >> swap;
+            select = stoi(swap);
 
             if((select > 6) || (select < 0))
-                throw 1;
+                throw std::exception();
 
-        } catch (int a){
+        } catch (...){
             std::cout << "Данный пункт меню отсутствует" << std::endl;
-            return;
+            continue;
         }
 
         switch (select) {
@@ -314,6 +333,9 @@ void System::work_with_plan(int u_index, int g_index) {
                 q += 1;
                 break;
             }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
+            }
         }
         if (q == 0)
             break;
@@ -324,7 +346,7 @@ void System::work_with_task(int u_index, int g_index, int p_index) {
     while(true) {
         int select;
         int q = -1;
-        int option = 0;
+        std::string swap;
         std::cout << "____________________________" << std::endl;
         std::cout << "Меню:" << std::endl;
         std::cout << "1 - добавить задание к предмету" << std::endl;
@@ -334,15 +356,15 @@ void System::work_with_task(int u_index, int g_index, int p_index) {
         std::cout << "Ввод: ";
 
         try {
-            std::cin >> select;
+            std::cin >> swap;
+            select = stoi(swap);
 
             if((select > 3) || (select < 0))
-                throw 1;
+                throw std::exception();
 
-        } catch (int a){
+        } catch (...){
             std::cout << "Данный пункт меню отсутствует" << std::endl;
             continue;
-            return;
         }
 
         switch (select) {
@@ -362,6 +384,76 @@ void System::work_with_task(int u_index, int g_index, int p_index) {
             case 0: {
                 q += 1;
                 break;
+            }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
+            }
+        }
+        if (q == 0)
+            break;
+    }
+}
+
+void System::start() {
+    int p_i = 0;
+    int select;
+    std::string swap;
+
+    while (true) {
+        if (p_i != 1) {
+            std::cout << std::endl << "_________________________________" << std::endl;
+            std::cout << "Учёт успеваемости студентов" << std::endl;
+            std::cout << "_________________________________" << std::endl;
+            p_i++;
+        } else {
+            p_i = 0;
+        }
+
+        int q = -1;
+        std::cout << "Меню:" << std::endl;
+        std::cout << "1 - добавить ВУЗ" << std::endl;
+        std::cout << "2 - удалить ВУЗ" << std::endl;
+        std::cout << "3 - список ВУЗов" << std::endl;
+        std::cout << "4 - выбрать институт" << std::endl;
+        std::cout << "0 - выход" << std::endl;
+        std::cout << "Ввод: ";
+
+        try {
+            std::cin >> swap;
+            select = stoi(swap);
+            if ((select > 4) || (select < 0))
+                throw std::exception();
+        } catch (...) {
+            std::cout << "Данный пункт меню отсутствует" << std::endl;
+            continue;
+        }
+
+        switch (select) {
+            case 1: {
+                add_university();
+                break;
+            }
+            case 2: {
+                delete_university();
+                break;
+            }
+            case 3: {
+                print_university();
+                break;
+            }
+            case 4: {
+                int index;
+                print_university();
+                std::cout << "Выберите институт: ";
+                std::cin >> index;
+                work_with_groups(index - 1);
+            }
+            case 0: {
+                q += 1;
+                break;
+            }
+            default: {
+                std::cout << "Данный пункт меню отстутствует" << std::endl;
             }
         }
         if (q == 0)

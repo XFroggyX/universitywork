@@ -54,7 +54,7 @@ void Group::delete_student(int i) {
         std::cin >> student_index;
 
         if((student_index > list_students.size()) || (student_index < 0))
-            throw 1;
+            throw std::exception();
 
     } catch (int a){
         std::cout << "Студент с таким номером отсутствует." << std::endl;
@@ -107,7 +107,7 @@ void Group::set_mark_student(int s_index) {
         int p_index;
         std::cout << "Выберите предмет: ";
         std::cin >> p_index;
-        list_students[s_index].get_session().get_session().get_subject(p_index).change_mark();
+        list_students[s_index].get_session().get_session().get_subject(p_index - 1).change_mark();
     }else if(select == 2) {
         list_students[s_index].get_session().get_session().print_plan();
         int p_index;
