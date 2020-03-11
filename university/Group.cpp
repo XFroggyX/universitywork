@@ -97,4 +97,26 @@ void Group::print_not_allow_students() {
     }
 }
 
+void Group::set_mark_student(int s_index) {
+    std::cout << "Вы желаете выставить оценку за передмет или за задание ?" << std::endl;
+    std::cout << "1. Оценка за предмет" << std::endl << "2. Оценка за задание" << std::endl;
+    int select;
+    std::cin >> select;
+    if(select == 1) {
+        list_students[s_index].get_session().get_session().print_plan();
+        int p_index;
+        std::cout << "Выберите предмет: ";
+        std::cin >> p_index;
+        list_students[s_index].get_session().get_session().get_subject(p_index).change_mark();
+    }else if(select == 2) {
+        list_students[s_index].get_session().get_session().print_plan();
+        int p_index;
+        std::cout << "Выберите предмет: ";
+        std::cin >> p_index;
+        list_students[s_index].get_session().get_session().get_subject(p_index - 1).task_change_mark();
+    } else {
+        std::cout << "Выбран не верный тип" << std::endl;
+    }
+}
+
 

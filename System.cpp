@@ -228,10 +228,15 @@ void System::work_with_students(int u_index, int g_index) {
                 break;
             }
             case 8: {
+                list_university[u_index].get_group(g_index).print_not_allow_students();
                 break;
             }
             case 9: {
-
+                int index;
+                list_university[u_index].get_group(g_index).print_group_students();
+                std::cout << "Выберите студента: ";
+                std::cin >> index;
+                list_university[u_index].get_group(g_index).set_mark_student(index - 1);
                 break;
             }
             case 10: {

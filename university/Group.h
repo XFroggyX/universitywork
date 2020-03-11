@@ -27,6 +27,7 @@ public:
     void delete_student(int i = -1);
     void print_group_students();
     void allow_student(Plan);
+    void set_mark_student(int);
 };
 
 
