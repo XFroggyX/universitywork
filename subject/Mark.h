@@ -13,11 +13,13 @@ private:
     std::string type;
 public:
     Mark();
-    Mark(int);
-    Mark(bool);
+    explicit Mark(int);
+    explicit Mark(bool);
+
     void change_mark();
     int return_mark();
     std::string return_type();
+
     ~Mark();
 };
 

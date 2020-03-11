@@ -50,7 +50,7 @@ void Student::list_exam() {
 }
 
 void Student::list_not_ex() {
-    student_session[0].get_session().print_notex_subj();
+    student_session[0].get_session().print_not_ex_subj();
 }
 
 void Student::print_delivered() {

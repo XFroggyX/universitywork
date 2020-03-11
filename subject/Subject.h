@@ -8,30 +8,25 @@
 
 class Subject {
 private:
-    std::vector<Task *> tasks;
+    std::vector<Task *> list_tasks;  //список заданий
     std::string name_subject;
     std::string type_subject;
-    unsigned hour_subject = 0;
-    std::vector<Mark> mark_subj;
+    std::vector<Mark> mark_subj; //оценка за предмет
 public:
     Subject();
     ~Subject();
 
-    void print_name_subject() const;
-    void print_subject_mark();
-    void change_mark();
-    void rename_subj(const std::string& = " ");
-    void add_hour(unsigned);
-    void print_hour();
-    void print_task_name();
-    void delete_task();
-    void print_task_list();
-    bool its_subj();
+    void change_mark(); //оценка за предмет
     std::string get_name_subject();
     std::string get_type_subject();
+
     void add_task();
+    void delete_task();
+    void print_task_list();
     void task_change_mark();
-    bool subj_delivered();
+    bool its_ex(); //экзамен ли данный предмет
+
+    bool subj_delivered(); //сданные ли предмет
     void print_task_delivered();
 };
 

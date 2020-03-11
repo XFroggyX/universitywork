@@ -13,7 +13,7 @@ std::string planstr(std::string input_string) {
     return input_string;
 }
 
-void Plan::add_subject(Subject subject) {
+void Plan::add_subject(const Subject& subject) {
     list_subjects.push_back(subject);
     items_plan++;
 }
@@ -33,16 +33,16 @@ void Plan::print_plan() {
 void Plan::print_ex_subj() {
     std::cout << "План работ(экзамены):" << std::endl;
     for(int i = 0; i < list_subjects.size(); i++) {
-        if(list_subjects[i].its_subj())
+        if(list_subjects[i].its_ex())
             std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()
                 << " " << list_subjects[i].get_type_subject() << std::endl;
     }
 }
 
-void Plan::print_notex_subj() {
+void Plan::print_not_ex_subj() {
     std::cout << "План работ(зачёты):" << std::endl;
     for(int i = 0; i < list_subjects.size(); i++) {
-        if(!list_subjects[i].its_subj())
+        if(!list_subjects[i].its_ex())
             std::cout << i + 1  << ". " << list_subjects[i].get_name_subject()  << " "
                 << list_subjects[i].get_type_subject() << std::endl;
     }
@@ -53,23 +53,22 @@ void Plan::delete_subject_plan() {
     std::cout << "Какой предмет желаете удалить из плана? ";
     std::cout << "Введите индекс предмет: " << std::endl;
     int index;
-    std::cin >> index;
+    try {
+        std::cin >> index;
+        if((index > items_plan) || (items_plan < 0)){
+
+        }
+
+
+    } catch(...) {
+        std::cout << "Данный предмет отсутствует. Предмет неудалён." << std::endl;
+        return;
+    }
     list_subjects.erase(list_subjects.begin() + index - 1);
     items_plan--;
 }
 
 int Plan::get_size_plan() {
-    return items_plan;
+    return (int)items_plan;
 }
 
-/*
-void Plan::delete_subject_plan
- () {
-    print_paln();
-    std::cout << "Какой предмет желаете удалить из плана. ";
-    std::cout << "Введите индекс элемента: " << std::endl;
-    int index;
-    std::cin >> index;
-    plan_sub.erase(plan_sub.begin() + index);
-}
-*/

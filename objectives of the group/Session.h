@@ -10,11 +10,11 @@ private:
     unsigned items_session = 0;
     Plan session;
 public:
-    Session(Plan);
-    unsigned items_sessio();
+    explicit Session(Plan);
+
     void print_arrears();
     Plan &get_session();
-    unsigned average_score();
+
     void print_inf();
 };
 

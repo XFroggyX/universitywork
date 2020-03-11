@@ -9,7 +9,7 @@ std::string Lab_work::get_name_work() const {
     return name_work;
 }
 
-Mark& Lab_work::get_mark() {
+Mark& Lab_work::get_mark()  {
     return mark[0];
 }
 
@@ -25,7 +25,7 @@ Lab_work::Lab_work(const Mark& new_mark) {
     mark.push_back(new_mark);
 }
 
-std::string Lab_work::get_type_task() {
+std::string Lab_work::get_type_task() const {
     return type_work;
 }
 
@@ -55,7 +55,7 @@ Rgz::Rgz(const Mark& new_mark) {
     mark.push_back(new_mark);
 }
 
-std::string Rgz::get_type_task() {
+std::string Rgz::get_type_task() const {
     return type_work;
 }
 
@@ -84,7 +84,7 @@ Coursework::Coursework(const Mark& new_mark) {
     mark.push_back(new_mark);
 }
 
-std::string Coursework::get_type_task() {
+std::string Coursework::get_type_task() const {
     return type_work;
 }
 
@@ -114,7 +114,7 @@ Test::Test(const Mark& new_mark) {
     mark.push_back(new_mark);
 }
 
-std::string Test::get_type_task() {
+std::string Test::get_type_task() const {
     return type_work;
 }
 
@@ -144,6 +144,6 @@ Exam::Exam(const Mark& new_mark) {
     mark.push_back(new_mark);
 }
 
-std::string Exam::get_type_task() {
+std::string Exam::get_type_task() const {
     return type_work;
 }

@@ -10,12 +10,14 @@ private:
     std::vector<Subject> list_subjects;
     unsigned items_plan = 0;
 public:
-    void add_subject(Subject);
-    Subject& get_subject(int i);
+    void add_subject(const Subject&);
     void delete_subject_plan();
+
     void print_plan();
     void print_ex_subj();
-    void print_notex_subj();
+    void print_not_ex_subj();
+
+    Subject& get_subject(int i);
     int get_size_plan();
 };
 

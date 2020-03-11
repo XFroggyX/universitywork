@@ -35,7 +35,7 @@ Mark::Mark() {
 
         if ((str_mark != "1") && (str_mark != "2"))
             throw 1;
-    } catch (int a) {
+    } catch (...) {
         std::cout << "Данный пункт меню отстутствует оценка задана автоматически." << std::endl;
         mark = "1";
         type = "Диф. зачёт";
@@ -69,30 +69,35 @@ Mark::~Mark() = default;
 void Mark::change_mark() {
     if(type == "Зачёт") {
         std::string _new_mark = "No";
+
         if (mark == "No") {
             std::cout << "Желаете поставтить зачёт?" << std::endl;
             std::cout << "Ввод (Yes/No): ";
             std::cin >> _new_mark;
             _new_mark = ltrim(rtrim(_new_mark));
         }
+
         if (_new_mark == "No") {
             mark = "No";
         } else if (_new_mark == "Yes") {
             mark = "Yes";
         } else {
-            std::cout << "Ошибка ввода оценки." << std::endl;
+            std::cout << "Ошибка ввода оценки." << "Оценка неизменна" << std::endl;
+            return;
         }
+
     } else if(type == "Диф. зачёт") {
         std::string str_mark;
         std::cout << "Введите новую оценку: ";
         std::cin >> str_mark;
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        int new_mark;
+        int new_mark = 0;
         str_mark = ltrim(rtrim(str_mark));
+
         try {
             new_mark = stoi(str_mark);
         } catch (...) {
-            std::cout << "Изменение неудалось. Вы ввели не число" << std::endl;
+            std::cout << "Изменение неудалось. Вы ввели не число." << "Оценка неизменна." <<  std::endl;
+            return;
         }
 
         try {
@@ -100,8 +105,9 @@ void Mark::change_mark() {
                 throw 1;
             else
                 mark = std::to_string(new_mark);
-        } catch (int a) {
+        } catch (...) {
             std::cout << "Вы вышли за пределы допустмых значений. Значение оценки было не изменено." << std::endl;
+            return;
         }
     }
 }

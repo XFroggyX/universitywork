@@ -299,7 +299,7 @@ void System::work_with_plan(int u_index, int g_index) {
                 break;
             }
             case 5: {
-                list_university[u_index].get_group(g_index).get_plan().print_notex_subj();
+                list_university[u_index].get_group(g_index).get_plan().print_not_ex_subj();
                 break;
             }
             case 6: {
