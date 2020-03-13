@@ -50,13 +50,13 @@ void Plan::print_not_ex_subj() {
 
 void Plan::delete_subject_plan() {
     print_plan();
-    std::cout << "Какой предмет желаете удалить из плана? ";
-    std::cout << "Введите индекс предмет: " << std::endl;
+    std::cout << "Какой предмет желаете удалить из плана?" << std::endl;
+    std::cout << "Ввод: " << std::endl;
     int index;
     try {
         std::cin >> index;
         if((index > items_plan) || (items_plan < 0)){
-            throw 1;
+            throw std::exception();
         }
 
     } catch(...) {

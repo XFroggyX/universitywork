@@ -34,7 +34,7 @@ Mark::Mark() {
         str_mark = rtrim(ltrim(str_mark));
 
         if ((str_mark != "1") && (str_mark != "2"))
-            throw 1;
+            throw std::exception();
     } catch (...) {
         std::cout << "Данный пункт меню отстутствует оценка задана автоматически." << std::endl;
         mark = "1";
@@ -102,7 +102,7 @@ void Mark::change_mark() {
 
         try {
             if ((new_mark < 1) || (new_mark > 5))
-                throw 1;
+                throw std::exception();
             else
                 mark = std::to_string(new_mark);
         } catch (...) {
@@ -128,3 +128,13 @@ int Mark::return_mark() {
 std::string Mark::return_type() {
     return type;
 }
+
+void Mark::change_type_int() {
+    mark = "1";
+    type = "Диф. зачёт";
+}
+
+void Mark::set_mark(int new_mark) {
+    mark = std::to_string(new_mark);
+}
+

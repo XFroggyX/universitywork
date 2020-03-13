@@ -24,8 +24,9 @@ public:
     std::string get_name_group() const;
     void delete_student(int i = -1);
     void print_group_students();
-    void allow_student(Plan);
+    void allow_student();
     void set_mark_student(int);
+    void save_plan(const Plan&);
 };
 
 

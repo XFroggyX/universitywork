@@ -97,6 +97,7 @@ void System::work_with_session(int u_index, int g_index, int s_index) {
                     std::cout << "Вы допущены" << std::endl;
                 else
                     std::cout << "Вы не допущены" << std::endl;
+                break;
             }
             case 0: {
                 q += 1;
@@ -122,6 +123,7 @@ void System::work_with_groups(int u_index) {
         std::cout << "2 - удалить группу" << std::endl;
         std::cout << "3 - список групп в институте" << std::endl;
         std::cout << "4 - работа с группами" << std::endl;
+        std::cout << "5 - список допущенных студентов" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
 
@@ -129,7 +131,7 @@ void System::work_with_groups(int u_index) {
             std::cin >> swap;
             select = stoi(swap);
 
-            if((select > 4) || (select < 0))
+            if((select > 5) || (select < 0))
                 throw std::exception();
 
         } catch (...){
@@ -159,6 +161,10 @@ void System::work_with_groups(int u_index) {
                 std::cin >> index;
                 work_with_students(u_index, index-1);
                 q--;
+                break;
+            }
+            case 5: {
+                print_all_allow_students();
                 break;
             }
             case 0: {
@@ -191,7 +197,7 @@ void System::work_with_students(int u_index, int g_index) {
         std::cout << "7 - список допущенных студентов" << std::endl;
         std::cout << "8 - список не допущенных студентов" << std::endl;
         std::cout << "9 - выставить оценку студенту" << std::endl;
-        std::cout << "10 - средний бал группы за экзаменны" << std::endl; //TTTTT
+        std::cout << "10 - сохранить план" << std::endl;
         std::cout << "0 - назад" << std::endl;
         std::cout << "Ввод: ";
         try {
@@ -226,7 +232,7 @@ void System::work_with_students(int u_index, int g_index) {
                 break;
             }
             case 5: {
-                list_university[u_index].get_group(g_index).allow_student(list_university[u_index].get_group(g_index).get_plan());
+                list_university[u_index].get_group(g_index).allow_student();
                 break;
             }
             case 6: {
@@ -254,6 +260,7 @@ void System::work_with_students(int u_index, int g_index) {
                 break;
             }
             case 10: {
+                list_university[u_index].get_group(g_index).save_plan(list_university[u_index].get_group(g_index).get_plan());
                 break;
             }
             case 0: {

@@ -16,10 +16,11 @@ public:
     explicit Mark(int);
     explicit Mark(bool);
 
+    void change_type_int();
     void change_mark();
     int return_mark();
     std::string return_type();
-
+    void set_mark(int);
     ~Mark();
 };
 

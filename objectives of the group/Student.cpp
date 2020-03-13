@@ -16,7 +16,7 @@ std::string studstr(std::string input_string) {
 }
 
 Student::Student() {
-    std::cout << "Введите ФИО студента:";
+    std::cout << "Введите ФИО студента: ";
     std::string new_name_student;
     std::cin >> new_name_student;
     new_name_student = studstr(new_name_student);
@@ -27,18 +27,17 @@ std::string Student::get_name_student() const {
     return name_student;
 }
 
-void Student::allow(Plan pl) {
-    Session ss(std::move(pl));
-    student_session.push_back(ss);
+void Student::allow() {
     allows = true;
 }
 
-bool Student::itsallow() {
-    return allows;
+void Student::print_subject_session() {
+    student_session[0].get_plan_session().print_plan();
 }
 
-void Student::print_subject_session() {
-    student_session[0].get_session().print_plan();
+void Student::save_plan(Plan pl) {
+    Session ss(std::move(pl));
+    student_session.push_back(ss);
 }
 
 Session &Student::get_session() {
@@ -46,11 +45,11 @@ Session &Student::get_session() {
 }
 
 void Student::list_exam() {
-    student_session[0].get_session().print_ex_subj();
+    student_session[0].get_plan_session().print_ex_subj();
 }
 
 void Student::list_not_ex() {
-    student_session[0].get_session().print_not_ex_subj();
+    student_session[0].get_plan_session().print_not_ex_subj();
 }
 
 void Student::print_delivered() {

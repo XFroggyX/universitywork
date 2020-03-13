@@ -9,6 +9,7 @@ class University {
 private:
     std::vector<Group> list_groups;
     std::string name_university;
+    int size_university = 0;
 public:
     University();
     explicit University(std::string);
@@ -17,6 +18,7 @@ public:
     Group& get_group(int);
     void delete_group();
     void print_group() const;
+    void print_all_allow_students();
 };
 
 

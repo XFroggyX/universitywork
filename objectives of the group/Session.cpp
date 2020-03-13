@@ -6,7 +6,7 @@ Session::Session(Plan plan) {
     session = std::move(plan);
 }
 
-Plan &Session::get_session() {
+Plan &Session::get_plan_session() {
     return session;
 }
 
@@ -24,8 +24,8 @@ void Session::print_arrears() {
 
 void Session::print_inf() {
     for(int i = 0; i < session.get_size_plan(); i++) {
-        std::cout << "Передмет " << session.get_subject(i).get_name_subject() << " список всех работ:"
-            << std::endl;
+        std::cout << "Передмет " << session.get_subject(i).get_name_subject() << ". Оенка за предмет: ";
+        std:: cout << session.get_subject(i).get_mark() << std::endl << "Cписок всех работ по предмету: " << std::endl;
         session.get_subject(i).print_task_list();
 
     }

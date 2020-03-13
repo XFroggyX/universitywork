@@ -13,7 +13,7 @@ public:
     explicit Session(Plan);
 
     void print_arrears();
-    Plan &get_session();
+    Plan &get_plan_session();
 
     void print_inf();
 };

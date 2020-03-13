@@ -27,6 +27,11 @@ Subject::Subject() {
 
 void Subject::change_mark(){
     mark_subj[0].change_mark();
+    for(auto & list_task : list_tasks) {
+        if(list_task->get_type_task() == "Экзамен") {
+            list_task->get_mark().set_mark(mark_subj[0].return_mark());
+        }
+    }
 }
 
 void Subject::add_task() {
@@ -36,7 +41,7 @@ void Subject::add_task() {
     std::cout << "Виды работ:" << std::endl;
     std::cout << "1. Лабораторная" << std::endl << "2. РГЗ" << std::endl << "3. Курсовая работа" << std::endl
     <<"4. Тест" << std::endl  << "5. Экзамен" << std::endl;
-    std::cout << "Выберите тип задания:";
+    std::cout << "Выберите тип задания: ";
 
     try {
         std::cin >> type;
@@ -78,6 +83,8 @@ void Subject::add_task() {
             auto* Exam = new Concrete_Exam();
             list_tasks.push_back(Exam->create_subject());
             list_tasks[list_tasks.size() - 1]->set_name_work(name);
+            mark_subj[0].change_type_int();
+            type_subject = mark_subj[0].return_type();
             break;
         }
         default: {
@@ -99,8 +106,8 @@ std::string Subject::get_type_subject() {
 
 void Subject::delete_task() {
     print_task_list();
-    std::cout << "Какое задание желаете удалить из предмета? ";
-    std::cout << "Введите индекс элемента: ";
+    std::cout << "Какое задание желаете удалить из предмета? " << std::endl;
+    std::cout << "Введите индекс задания: ";
     int index;
     std::cin >> index;
     list_tasks.erase(list_tasks.begin() + index - 1);
@@ -112,14 +119,14 @@ void Subject::print_task_list() {
         if(list_tasks[i]->get_mark().return_type() == "Экзамен") {
             if(list_tasks[i]->get_mark().return_mark() == 1) {
                 std::cout << i + 1 << ". " << list_tasks[i]->get_name_work() << " " << list_tasks[i]->get_type_task()
-                          << "Зачёт" << std::endl;
+                          << " Зачёт" << std::endl;
             } else {
                 std::cout << i + 1 << ". " << list_tasks[i]->get_name_work() << " " << list_tasks[i]->get_type_task()
-                          << "Не зачёт" << std::endl;
+                          << " Не зачёт" << std::endl;
             }
         } else {
             std::cout << i + 1 << ". " << list_tasks[i]->get_name_work() << " " << list_tasks[i]->get_type_task()
-                      << list_tasks[i]->get_mark().return_mark() << std::endl;
+                      <<  " " << list_tasks[i]->get_mark().return_mark() << std::endl;
         }
     }
 }
@@ -132,12 +139,20 @@ bool Subject::its_ex() {
     return false;
 }
 
-void Subject::task_change_mark() {
+void Subject::task_change_mark(bool status) {
     print_task_list();
     int index;
     std::cout << "Оценку за какой предмет вы хотите выставыить?" << std::endl << "Ввод: ";
     std::cin >> index;
-    list_tasks[index - 1]->change_mark();
+    if((list_tasks[index - 1]->get_type_task() == "Экзамен") && (status)) {
+        list_tasks[index - 1]->change_mark();
+        mark_subj.clear();
+        mark_subj.push_back(list_tasks[index - 1]->get_mark());
+    }
+    else if(list_tasks[index - 1]->get_type_task() != "Экзамен")
+        list_tasks[index - 1]->change_mark();
+    else
+        std::cout << "У студента отстутствует допуск к экзамену." << std::endl;
 }
 
 bool Subject::subj_delivered() {
@@ -168,4 +183,16 @@ void Subject::print_task_delivered() {
         if(j == 1)
             std::cout << "У данного нет не сданных заданий" << std::endl;
     }
+}
+
+std::string Subject::get_mark() {
+    if(mark_subj[0].return_type() == "Зачёт") {
+        if(mark_subj[0].return_mark() == 1)
+            return "Зачёт";
+        else
+            return "Не зачёт";
+    } else {
+        return std::to_string(mark_subj[0].return_mark());
+    }
+
 }

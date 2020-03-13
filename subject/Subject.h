@@ -23,9 +23,9 @@ public:
     void add_task();
     void delete_task();
     void print_task_list();
-    void task_change_mark();
+    void task_change_mark(bool);
     bool its_ex(); //экзамен ли данный предмет
-
+    std::string get_mark();
     bool subj_delivered(); //сданные ли предмет
     void print_task_delivered();
 };

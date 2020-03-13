@@ -29,6 +29,7 @@ University::University(std::string name_university_) : name_university(std::move
 
 void University::add_group(const Group& new_group) {
     list_groups.push_back(new_group);
+    size_university++;
 }
 
 std::string University::get_name_university() const {
@@ -48,13 +49,14 @@ void University::delete_group() {
         std::cin >> group_index;
 
         if((group_index > list_groups.size()) || (group_index < 0))
-            throw 1;
+            throw std::exception();
 
     } catch (...){
         std::cout << "Группа с таким номером отсутствует." << std::endl;
         return;
     }
     list_groups.erase(list_groups.begin() + group_index - 1);
+    size_university--;
     std::cout << "-- группа успешно удалён --" << std::endl;
 }
 
@@ -63,5 +65,12 @@ void University::print_group() const {
     std::cout << "Список групп: " << std::endl;
     for(int i = 0; i < list_groups.size(); i++) {
         std::cout << i + 1 << ". " << list_groups[i].get_name_group() << std::endl;
+    }
+}
+
+void University::print_all_allow_students() {
+    for(int i = 0; i < size_university; i++) {
+        std::cout << "В группе " << list_groups[i].get_name_group() << " допущенны следующие студенты: "  << std::endl;
+        list_groups[i].print_allow_students();
     }
 }
